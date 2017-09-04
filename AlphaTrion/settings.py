@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['192.168.1.2']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'AlphaTrion.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/soult/OneDrive/School/2017-2018 School Year/AlphaTrion/AlphaTrion/templates/'],
+        'DIRS': [os.path.join(BASE_DIR, '/AlphaTrion/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
