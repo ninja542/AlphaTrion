@@ -55,11 +55,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'AlphaTrion.urls'
+PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '/AlphaTrion/templates/')],
+        'DIRS': [os.path.join(PROJECT_DIR, "templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
