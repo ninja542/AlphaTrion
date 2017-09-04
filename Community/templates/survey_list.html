@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Community Surveys</title>
+{% endblock %}
+
+{% block style %}
+<style type='text/css'>
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+
+.survey {
+	position: relative;
+	margin: 0;
+	width:33.33333%;
+	float: left;
+	outline: 0;
+}
+
+.thumbnail{
+	display: block;
+	padding: 0 0 0 0;
+	position: relative;
+	margin: 0;
+	width: 598.984px;
+	height: auto;
+	height:  336.922px
+}
+
+.thumbnail:hover{
+	opacity: .9;
+}
+
+.survey-title{
+	margin: 0;
+	position: absolute;
+	width:100%;
+	left: 0;
+	bottom: 0px;
+	background: rgba(0,0,0, 0.25);
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.entry-link{
+	margin: 0;
+	color: white;
+	text-decoration: none;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+	
+	{% if communityinst_list %}
+	{% for communities in communityinst_list %}
+	<article id='{{ communities.date }}' class='survey'> 
+
+		<div class='thumbnail'>
+			{% load static %} 
+			<a href='{% url 'community-review' communities.id request.user.id %}'>
+			<img class='thumbnail' src='{% static communities.photo.url|slice:"17:" %}'></a>
+		</div>
+
+		<div class='survey-title'>
+			<h1 class='date'>
+			<a class = 'entry-link' href="{% url 'community-review' communities.id request.user.id %}">{{communities.date}}</a>
+			</h1>
+		</div>
+	</article>
+
+	{% endfor %}
+	{% else %}
+	
+	{% endif %}
+
+{% else %}
+<p>You aren't logged in! Log in <a href="">here</a></p>
+{% endif %}
+
+{% endblock %}

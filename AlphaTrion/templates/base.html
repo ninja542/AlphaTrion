@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block title %}
+<title>DHS Senate</title>
+{% endblock %}
+
+{% block nav-bar-style %}
+
+<script type='text/javascript'>
+function handlerfornavbar(){
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	if (w <= 1083){	
+		if (document.getElementsByClassName("navbar")[0].style.display == "block"){
+			document.getElementsByClassName("navbar")[0].style.display = "none";
+		}
+		else{
+			document.getElementsByClassName("navbar")[0].style.display = "block";
+		}
+	}
+}
+
+function resizehandler(){
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	if (w <= 1083){
+		document.getElementsByClassName("navbar")[0].style.display = "none";
+	}
+	else{
+		document.getElementsByClassName("navbar")[0].style.display = "block";
+	}
+
+
+}
+
+window.onresize = resizehandler
+
+
+
+</script>
+
+<style type='text/css'>
+
+.oheader{
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 40px;
+	border-bottom: black solid;
+}
+
+.navbar {
+	display: block;
+	height: 40px;
+	width:100%;
+	margin: 0; 
+	list-style-type: none;
+	overflow: hidden;
+	background-color: #8f2837;
+	padding: 0; 
+}
+
+.nav-item{
+	float: left;
+}
+
+.link {
+	border-right: solid 1px;
+	border-color: black;
+	text-align: center;
+	font-size: 2.2em;
+    padding: 1px 20px;
+    text-decoration: none;
+	color: #efc729; 
+}
+
+.link:hover {
+	overflow: hidden;
+	background-color: #111;
+}
+
+.link-selected {
+	border-right: solid 1px;
+	border-color: black;
+	text-align: center;
+	font-size: 2.2em;
+    padding: 1px 137px;
+    text-decoration: none;
+	color: #efc729;
+	background-color: #111;
+ }
+
+ .link-selected:hover {
+ 	opacity: .8; 
+ }
+
+ .menu-icon{
+ 	float: right;
+ 	display: none;
+ 	width: 40px;
+ 	height: 40px; 
+ 	background: #4C8FEC center;
+ }
+
+
+@media only screen and (max-width : 1083px){
+	.menu-icon{
+		display: inline-block;
+	}
+
+	.navbar {
+		position: absolute;
+		z-index: 100;
+		float: right;
+		display: none;
+		padding: 15px;
+		background: black;
+		border: 5px solid #444;
+		right: 0px;
+		top: 40px;
+		width: 50%;
+		border-radius: 4px 0 4px 4px; 
+	}
+
+	.link{
+		font-size: 1em;
+
+	}
+
+	.link-selected{
+		font-size: 1em;
+		border-right: solid 1px;
+		border-color: black;
+		text-align: center;
+		font-size: 1em;
+    	padding: 1px 20px;
+    	text-decoration: none;
+		color: #efc729; 
+	}
+
+	#nav-item{
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+}
+
+
+</style>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+</head>
+<body>
+{% block nav-bar %}
+<header class="oheader">
+<nav onclick='handlerfornavbar()'>
+<a href="#" class='menu-icon'></a>
+	<ul class='navbar' id='navbar'>
+		{% if request.path == '/' or request.path == '/home' %}
+		<li class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></li>
+		{% else %}
+		<li class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></li>
+		{% endif %}
+	
+		{% if request.path == '/community/' %}
+		<li class='nav-item'><a class = 'link-selected' href='{% url 'community-home' %}'>Community</a></li>
+		{% else %}
+		<li class='nav-item'><a class = 'link' href='{% url 'community-home' %}'>Community</a></li>
+		{% endif %}
+
+		{% if request.path == '/projects/' %}
+		<li class='nav-item'><a class = 'link-selected' href=''>Projects</a></li>
+		{% else %}
+		<li class='nav-item'><a class = 'link' href=''>Projects</a></li>
+		{% endif %}
+
+		{% if request.path == '/senate/' %}
+		<li class='nav-item'><a class = 'link-selected' href=''>Senate</a></li>
+		{% else %}
+		<li class='nav-item'><a class = 'link' href=''>Senate</a></li>
+		{% endif %}
+
+		{% if request.user.is_authenticated %}
+		<li style=''class='nav-item'><a class = 'link' href=''>Logout</a></li>
+		{% else %}
+		<li style=''class='nav-item'><a class = 'link' href=''>Login</a></li>
+		{% endif %}
+	</ul>
+</nav>
+</header>
+
+{% endblock %}
+{% block content %}{% endblock %}
+</body>
+</html>

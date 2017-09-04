@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style type='text/css'>
+html {
+	height: 100%;
+
+}
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0; 
+}
+
+.logo {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    width: auto;
+}
+
+.logo-handler { 
+	height: 100%;
+	width: 100%;
+}
+
+.links a{ 
+	padding: 10px 10px 10px 10px;
+	font-size: 20px;
+	text-decoration: none;
+	color: #efc729;
+	background-color: #8f2837;
+	position: absolute;
+}
+
+.link-button-left{
+	top: 90%;
+	left: 25%;
+	transform: translate(-25%, -90%);
+}
+
+.link-button-lower{
+
+	top: 90%;
+	left: 50%;
+	transform: translate(-50%, -90%);
+}
+
+.link-button-right{
+	top: 90%;
+	left: 75%;
+	transform: translate(-75%, -90%);
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class='logo-handler'>
+	<div class='logo-div'>
+		<img class='logo' src='{% static 'Home/logo.jpg' %}'>
+		<div class='links'>
+			<a href='https://dhsnews.net' class='link-button-left'>DHS NEWS</a>
+			<a href='http://dhs.newton-conover.org' class='link-button-lower'>DHS WEBSITE</a>
+			<a href='https://www.facebook.com/groups/700578770033057/' class='link-button-right'>DHS STUDENTS</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

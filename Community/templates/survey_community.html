@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block title %}<title>Reivew for {{ community.date }}</title>{% endblock %}
+{% block style %}
+<style>
+
+.game_rating > *{
+	display:inline-block;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+{% block nav-bar %}{% endblock %}
+{% if request.user.id == user.id %}
+	
+	<form method="POST">
+	{% csrf_token %}
+	{% if community.occuring_games.all %}
+	{% for games in community.occuring_games.all %}
+	<table>
+	<tr>
+		<p>What did you think of {{ games }} 
+		
+		{% load static %}
+		<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="guck">
+
+		</p>
+		{% load extras %}
+		{% with x=game_form_dict|key:games.name %}
+		{{ x }}
+		{% endwith %}
+		<!--(game_form_dict|key:games.name).like_to_see_again
+		(game_form_dict|key:games.name).game_comments-->
+		{% endfor %}
+
+	</tr>
+	</table>
+	{% endif %}
+
+	<table>
+	<tr>
+	<p>Please rate what you thought of this community's pacing</p>
+	{{ pacing_section }}
+	</tr>
+	</table>
+	<input type='submit' value="Submit">
+	</form>
+
+{% else %}
+	<p>ERROR</p>
+{% endif %}	
+
+{% endblock %}

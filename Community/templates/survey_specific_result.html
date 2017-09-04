@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{mean}}</h1>
+<br>
+
+<div class="individual-ratings"> 
+
+
+<form action='{% url 'community-results-specific' community.id %}' method='get'>
+{% csrf_token %}
+<label for='games'>Game</label>
+<select name='games'>
+<option selected value=''>Chooose a option!</option>
+{% for instances in game_ratings_dict.values %}
+<option value={{ instances.games.game.id }} />{{ instances.games.game.name }}</option>
+{% endfor %}
+{% load extras %} 
+<input type='submit' name='gameu' value='Filter'/>
+</form> 
+
+{% for instances in game_ratings_dict.values %}
+	<h3>{{ instances.games.game.name }}</h3>
+	<p> {{ instances.game_rating }}</p>
+{% endfor %}
+</div>
+{% endblock %}

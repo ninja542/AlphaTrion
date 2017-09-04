@@ -1,0 +1,32 @@
+# PRIORITY # 
+Implement Community Extras into Community Survey 
+Login/Logout system. 
+
+SURVEY LIST NEEDS ROBUSTNESS ADDED TO IT SO THAT IT WILL LOOK THE SAME ACROSS A MULTITUDE OF DEVICES
+
+
+# Somewhere # 
+Begin writing documentation for Senate so that the db isn't destoryed as soon as it's launched (that would preferablly come much later when the entire website is depreciated and nobody learned how to update it.)
+
+# IN community/models.py # 
+Finish Community Surveys 
+
+# IN community/survey_test.html # 
+Setup Info for the description and also fix it and make it look good
+
+#IN community/survey_list.html 
+Figure out what to do if comunitysurvey_list returns 0 
+Finish home formatting (and find a way to give an error if a photo's height > width (this will break the site))
+
+#IN community/survey_specific_result, community/views.py # 
+Just fix this mess. 
+
+#IN Home #
+build designed home page and add redirect links to outside Discovery Senate resources (DHS STUDENTS, DHS WEBSITE, DHSNEWS)
+
+
+#### WARNINGS #### 
+Community Instance Image paths are a little wonky and have formatting done on them in the tempalte, watch out for that if 
+it needs to be changed in release. 
+
+SURVEYS NEED TO BE ABLE TO BE REDONE/CHANGED?
