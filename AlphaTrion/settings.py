@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Home.apps.HomeConfig',
     'Project.apps.ProjectConfig',
     'Senate.apps.SenateConfig',
+    'Campaign.apps.CampaignConfig'
 ]
 
 MIDDLEWARE = [
@@ -125,18 +126,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#STATICFILES_DIRS = (
-#    (os.path.join(BASE_DIR, 'static')),
-#)
 
 
 # Other Settings 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
+#SECURE_CONTENT_TYPE_NOSNIFF = True
+#SECURE_BROWSER_XSS_FILTER = True
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#X_FRAME_OPTIONS = 'DENY'
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

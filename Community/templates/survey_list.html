@@ -28,7 +28,7 @@ body {
 	margin: 0;
 	width: 598.984px;
 	height: auto;
-	height:  336.922px
+	height:  336.922px;
 }
 
 .thumbnail:hover{
@@ -60,7 +60,6 @@ body {
 
 
 {% block content %}
-{% if request.user.is_authenticated %}
 	
 	{% if communityinst_list %}
 	{% for communities in communityinst_list %}
@@ -83,9 +82,5 @@ body {
 	{% else %}
 	
 	{% endif %}
-
-{% else %}
-<p>You aren't logged in! Log in <a href="">here</a></p>
-{% endif %}
 
 {% endblock %}
