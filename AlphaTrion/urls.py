@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^dhssenate/community/', include('Community.urls'),),
     url(r'^$', RedirectView.as_view(url='/campaign/')),
     url(r'^campaign/', include('Campaign.urls')),
-    url(r'^dhssenate/', include('Home.urls'))
+    url(r'^dhssenate/', include('Home.urls')),
+    url(r'^senate/', include('Senate.urls'))
 ]
