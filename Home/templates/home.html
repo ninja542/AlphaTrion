@@ -26,7 +26,7 @@ body {
 	width: 100%;
 }
 
-.links a{ 
+#linker{ 
 	padding: 10px 10px 10px 10px;
 	font-size: 20px;
 	text-decoration: none;
@@ -64,11 +64,9 @@ body {
 <div class='logo-handler'>
 	<div class='logo-div'>
 		<img class='logo' src='{% static 'Home/logo.jpg' %}'>
-		<div class='links'>
-			<a href='https://dhsnews.net' class='link-button-left'>DHS NEWS</a>
-			<a href='http://dhs.newton-conover.org' class='link-button-lower'>DHS WEBSITE</a>
-			<a href='https://www.facebook.com/groups/700578770033057/' class='link-button-right'>DHS STUDENTS</a>
-		</div>
+			<a href='https://dhsnews.net' class='link-button-left' id='linker'>DHS NEWS</a>
+			<a href='http://dhs.newton-conover.org' class='link-button-lower' id='linker'>DHS WEBSITE</a>
+			<a href='https://www.facebook.com/groups/700578770033057/' class='link-button-right' id='linker'>DHS STUDENTS</a>
 	</div>
 </div>
 

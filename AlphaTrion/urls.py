@@ -23,9 +23,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^dhssenate/community/', include('Community.urls'),),
-    url(r'^$', RedirectView.as_view(url='/campaign/')),
-    url(r'^campaign/', include('Campaign.urls')),
-    url(r'^dhssenate/', include('Home.urls')),
+    url(r'^community/', include('Community.urls')),
+    url(r'^$', RedirectView.as_view(url='/home/')),
+    url(r'^home/', include('Home.urls')),
     url(r'^senate/', include('Senate.urls'))
 ]

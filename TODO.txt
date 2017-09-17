@@ -19,3 +19,14 @@ Just fix this mess.
 #### WARNINGS #### 
 Community Instance Image paths are a little wonky and have formatting done on them in the tempalte, watch out for that if 
 it needs to be changed in release. 
+
+
+### LEFT OFF 9/15/17 ### 
+Senator page, need photos to match. 2x5 list. 
+
+
+### NAVIAGATION ###
+Figure out this static file thing. Jeeze. 
+
+### META ### 
+Make a second settings file 

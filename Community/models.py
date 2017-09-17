@@ -102,7 +102,9 @@ class CommunityPacingRatings(models.Model):
 
     pacing_rating = models.CharField(max_length=20, choices=COMMUNITY_PACING_RATINGS, default='d')
     
-
+    class Meta:
+        verbose_name='Community Pacing Ratings'
+        verbose_name_plural='Community Pacing Ratings'
     def __str__(self):
         return "{}-{}".format(self.user, self.community)
 

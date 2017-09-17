@@ -1,5 +1,74 @@
 {% extends 'base.html' %}
-
 {% block title %}<title>Senate</title>{% endblock %}
+{% block style %}
+<style type='text/css'>
+html, body{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
 
-{% block content %}<p>Coming Soon</p>{% endblock %}
+.senator-list-item{
+	display: block;
+	float: left;
+	position: relative;
+	width: 20%;
+	height: 45%;
+}
+
+
+.senator-info-section{
+	margin: 0;
+	left: 0;
+	bottom: 0;
+	display: block;
+	border-bottom: 0;
+	position: absolute;
+	background-color: rgba(143, 40, 55, 0.7);
+	color: #efD726;
+	line-height: 10px;
+	text-align: center;
+}
+
+.thumbnail{
+	display: block;
+	width:100%;
+	height: 100%;
+}
+
+.photo{
+	width: 100%;
+	height: 100%; 
+}
+
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+{% if senator_list %}
+	{% for senators in senator_list %}
+	<article class='senator-list-item'> 
+
+		<div class='thumbnail'>
+			{% load static %}
+			<img class='photo' src='{% static senators.photo.url|slice:"13:" %}'>
+		</div>
+
+		<div class='senator-info-section'>
+			<p class='name'>{{ senators.name }}</p>
+			<p class='email'> {{ senators.email }}</p>
+			<p class='grade'> {{ senators.grade }}</p>
+			<p class='position'> {{ senators.position }}</p>
+		</div>
+	</article>
+	{% endfor %}
+
+{% else %}
+	<p class='senator-list-item'> No Senators to display! </p>
+{% endif %}
+
+{% endblock %}

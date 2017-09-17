@@ -175,7 +175,7 @@ window.onresize = resizehandler
 <nav onclick='handlerfornavbar()'>
 <a href="#" class='menu-icon'></a>
 	<ul class='navbar' id='navbar'>
-		{% if request.path == '/' or request.path == '/home' %}
+		{% if request.path == '/' or request.path == '/home/' %}
 		<li class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></li>
 		{% else %}
 		<li class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></li>
@@ -194,9 +194,9 @@ window.onresize = resizehandler
 		{% endif %}
 
 		{% if request.path == '/senate/' %}
-		<li class='nav-item'><a class = 'link-selected' href=''>Senate</a></li>
+		<li class='nav-item'><a class = 'link-selected' href='{% url 'senate-home' %}'>Senate</a></li>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href=''>Senate</a></li>
+		<li class='nav-item'><a class = 'link' href='{% url 'senate-home' %}'>Senate</a></li>
 		{% endif %}
 
 		{% if request.user.is_authenticated %}
