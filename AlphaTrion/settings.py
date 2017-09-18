@@ -69,7 +69,6 @@ S3DIRECT_DESTINATIONS = {
         # OPTIONAL
         'auth': lambda u: u.is_staff, # Default allow anybody to upload
         'allowed': ['image/jpeg', 'image/png', 'video/mp4'],  # Default allow all mime types
-        'bucket': 'pdf-bucket', # Default is 'AWS_STORAGE_BUCKET_NAME'
         'acl': 'private', # Defaults to 'public-read'
         'cache_control': 'max-age=2592000', # Default no cache-control
         'content_disposition': 'attachment',  # Default no content disposition
