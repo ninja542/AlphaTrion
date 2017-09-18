@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User 
 from django.utils.translation import ugettext_lazy as _ 
 from django.utils import timezone
+from s3direct.fields import S3DirectField
 import uuid
+
 
 
 # Games
@@ -21,7 +23,7 @@ class CommunityInst(models.Model):
     spectrum_id = models.PositiveIntegerField(default=0)
     occuring_games = models.ManyToManyField(Game, through='CommunityGames')
     minutes_ended_early = models.PositiveIntegerField(blank=False, default=5)
-    photo = models.ImageField(upload_to='Community/static/Community/Community-Photos', default='static/Community/Community.jpg')
+    photo = S3DirectField(dest='images')
 
 
     def __str__(self):

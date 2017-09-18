@@ -68,7 +68,7 @@ body {
 		<div class='thumbnail'>
 			{% load static %} 
 			<a href='{% url 'community-review' communities.id request.user.id %}'>
-			<img class='thumbnail' src='{% static communities.photo.url|slice:"17:" %}'></a>
+			<img class='thumbnail' src='{{communities.photo }}'></a>
 		</div>
 
 		<div class='survey-title'>
