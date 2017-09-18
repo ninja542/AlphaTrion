@@ -63,7 +63,7 @@ PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 AWS_ACCESS_KEY_ID = str(os.environ.get('AWS_ACCESS_KEY_ID', ''))
 AWS_SECRET_ACCESS_KEY = str(os.environ.get('AWS_SECRET_ACCESS_KEY', ''))
 AWS_STORAGE_BUCKET_NAME = 'dhssenate-assets'
-S3DIRECT_REGION = 'us-east-2'
+S3DIRECT_REGION = 'us-east-2'   
 S3DIRECT_DESTINATIONS = {
     'images': {
         'key': 'uploads/images',
@@ -147,13 +147,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Other Settings 
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# X_FRAME_OPTIONS = 'DENY'
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
