@@ -26,4 +26,5 @@ class CommunityExtraRatingsForm(forms.ModelForm):
 		widgets = {
 		'extra_comments': forms.Textarea(attrs={'placeholder': 'Describe some other thoughts that you have about community here (Optional)'}),
 		'how_can_we_improve_survey': forms.Textarea(attrs={'placeholder': 'We take data collection very seriously and would love to hear student\'s thoughts about how it can be improved (Optional)'}),
+		'overall_rating': forms.RadioSelect(attrs={'class': 'overall_rating'})
 		}

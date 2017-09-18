@@ -5,7 +5,18 @@ from django.utils import timezone
 from s3direct.fields import S3DirectField
 import uuid
 
-
+RATING_CHOICES = (
+    (1, '1'),
+    (2, '2'),
+    (3, '3'), 
+    (4, '4'),
+    (5, '5'),
+    (6, '6'),
+    (7, '7'),
+    (8, '8'),
+    (9, '9'),
+    (10, '10')  
+)
 
 # Games
 class Game(models.Model):
@@ -51,19 +62,6 @@ class CommunityGameRatings(models.Model):
     user = models.ForeignKey(User)
     games = models.ForeignKey(CommunityGames)
 
-    RATING_CHOICES = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'), 
-        (4, '4'),
-        (5, '5'),
-        (6, '6'),
-        (7, '7'),
-        (8, '8'),
-        (9, '9'),
-        (10, '10')  
-    )
-
     game_rating = models.PositiveIntegerField(blank=False, choices=RATING_CHOICES, default=5)
     
     LIKE_TO_SEE_AGAIN = (
@@ -84,9 +82,9 @@ class CommunityGameRatings(models.Model):
 class CommunityExtraRatings(models.Model):
     user = models.ForeignKey(User)
     community = models.ForeignKey(CommunityInst)
-    overall_rating = models.PositiveIntegerField(blank=False, default=5)
-    extra_comments = models.TextField(blank=True, default='Describe some other thoughts that you have about community here')
-    how_can_we_improve_survey = models.TextField(blank=True, default='We take data collection very seriously and would love to hear student\'s thoughts about how it can be improved')
+    overall_rating = models.PositiveIntegerField(blank=False, default=5, choices=RATING_CHOICES)
+    extra_comments = models.TextField(blank=True)
+    how_can_we_improve_survey = models.TextField(blank=True)
 
     def __str__(self):
         return "{}-{}".format(self.user, self.community)
