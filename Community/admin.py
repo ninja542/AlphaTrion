@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Game, CommunityGames, CommunityGameRatings, CommunityInst, CommunityPacingRatings
+from .models import Game, CommunityGames, CommunityGameRatings, CommunityInst, CommunityPacingRatings, CommunityExtraRatings
 
 @admin.register(CommunityInst)
 class CommunityInstAdmin(admin.ModelAdmin):
@@ -21,8 +21,9 @@ class GamesAdmin(admin.ModelAdmin):
 class CommunityPacingRatingAdmin(admin.ModelAdmin):
 	model = CommunityPacingRatings
 
-
-
+@admin.register(CommunityExtraRatings)
+class CommunityExtraRatings(admin.ModelAdmin):
+	model = CommunityExtraRatings
 
 
 

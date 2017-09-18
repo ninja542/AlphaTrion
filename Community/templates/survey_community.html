@@ -32,8 +32,6 @@
 		{% with x=game_form_dict|key:games.name %}
 		{{ x }}
 		{% endwith %}
-		<!--(game_form_dict|key:games.name).like_to_see_again
-		(game_form_dict|key:games.name).game_comments-->
 		{% endfor %}
 
 	</tr>
@@ -45,6 +43,11 @@
 	<p>Please rate what you thought of this community's pacing</p>
 	{{ pacing_section }}
 	</tr>
+	</table>
+	<table>
+		<tr>
+			{{ extra_ratings }}
+		</tr>
 	</table>
 	<input type='submit' value="Submit">
 	</form>

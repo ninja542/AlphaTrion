@@ -7,8 +7,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
 from django.contrib.auth.models import Group
-from .models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings
-from .forms import CommunityGameRatingsForm, CommunityPacingRatingsForm
+from .models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings
+from .forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
 
 
 class CommunityInstView(generic.ListView): 
@@ -38,6 +38,7 @@ def review_community_instance(request, communityid, userid):
 			game_form_dict[games.name] = CommunityGameRatingsForm(request.POST, prefix='{}'.format(games.name))
 
 		pacing_section = CommunityPacingRatingsForm(request.POST)
+		extra_section = CommunityExtraRatingsForm(request.POST)
 		true_condintions = 0 
 		for y in game_form_dict.values():
 			if y.is_valid():
@@ -52,16 +53,22 @@ def review_community_instance(request, communityid, userid):
 				pacing_rating = pacing_section.cleaned_data['pacing_rating']
 				if CommunityPacingRatings.objects.filter(user=user, community=community):
 					raise ValidationError("You've already submitted this survey!")
-				#else:
-					#CommunityPacingRatings.objects.create(user=user, community=community, pacing_rating=pacing_rating)
+				else:
+					CommunityPacingRatings.objects.create(user=user, community=community, pacing_rating=pacing_rating)
+
+			if extra_section.is_valid():
+				overall_rating = extra_section.cleaned_data['overall_rating']
+				extra_comments = extra_section.cleaned_data['extra_comments']
+				how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
+				CommunityExtraRatings.objects.create(user=user, community=community, overall_rating=overall_rating, extra_comments=extra_comments, how_can_we_improve_survey=how_can_we_improve_survey)
 
 			for games in community.occuring_games.all():
 				if CommunityGameRatings.objects.filter(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0]):
 					raise ValidationError("You've already submitted this survey!")
-				#else: 
-				#	game_rating = game_form_dict[games.name].cleaned_data['game_rating']
-				#	game_comments = game_form_dict[games.name].cleaned_data['game_comments']
-					#CommunityGameRatings.objects.create(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0], game_rating=game_rating, game_comments=game_comments)
+				else: 
+					game_rating = game_form_dict[games.name].cleaned_data['game_rating']
+					game_comments = game_form_dict[games.name].cleaned_data['game_comments']
+					CommunityGameRatings.objects.create(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0], game_rating=game_rating, game_comments=game_comments)
 			return HttpResponseRedirect(reverse('community-home', current_app='Community'))
 
 	else:
@@ -69,11 +76,12 @@ def review_community_instance(request, communityid, userid):
 		for games in community.occuring_games.all():
 			game_form_dict[games.name] = CommunityGameRatingsForm(prefix='{}'.format(games.name))
 		pacing_section = CommunityPacingRatingsForm()
+		extra_section = CommunityExtraRatingsForm()
 
 #	if not community.occuring_games.all():
 #		return HttpResponseRedirect('/DBbroke/')
 
-	return render(request, 'survey_community.html', {'community': community, 'game_form_dict': game_form_dict, 'user': user, 'pacing_section': pacing_section})
+	return render(request, 'survey_community.html', {'community': community, 'game_form_dict': game_form_dict, 'user': user, 'pacing_section': pacing_section, 'extra_ratings': extra_section})
 
 
 def survey_results(request, communityid):
