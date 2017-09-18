@@ -60,7 +60,7 @@ PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 
 AWS_ACCESS_KEY_ID = str(os.environ.get('AWS_ACCESS_KEY_ID', ''))
 AWS_SECRET_ACCESS_KEY = str(os.environ.get('AWS_SECRET_ACCESS_KEY', ''))
-AWS_STORAGE_BUCKET_NAME = str(os.environ.get('S3_BUCKET_NAME', ''))
+AWS_STORAGE_BUCKET_NAME = 'dhssenate-assets'
 S3DIRECT_REGION = 'us-east-1'
 S3DIRECT_DESTINATIONS = {
     'images': {
