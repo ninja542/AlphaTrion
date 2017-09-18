@@ -67,6 +67,11 @@ S3DIRECT_REGION = 'us-east-2'
 S3DIRECT_DESTINATIONS = {
     'images': {
         'key': 'uploads/images',
+                'auth': lambda u: u.is_staff, # Default allow anybody to upload
+        'allowed': ['image/jpeg', 'image/png', 'video/mp4'],  # Default allow all mime types
+        'acl': 'private', # Defaults to 'public-read'
+        'cache_control': 'max-age=2592000', # Default no cache-control
+        'content_disposition': 'attachment',  # Default no content disposition
     }
 }
 
