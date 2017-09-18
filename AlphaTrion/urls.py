@@ -24,7 +24,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^community/', include('Community.urls')),
+    url(r'^senate/', include('Senate.urls')),
     url(r'^$', RedirectView.as_view(url='/home/')),
     url(r'^home/', include('Home.urls')),
-    url(r'^senate/', include('Senate.urls'))
+    url(r'^s3direct/', include('s3direct.urls')),
+
 ]
