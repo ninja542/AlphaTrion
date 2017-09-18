@@ -19,7 +19,7 @@ class CommunityPacingRatingsForm(forms.ModelForm):
 		exclude = ('user', 'community')
 
 class CommunityExtraRatingsForm(forms.ModelForm):
-	overall_rating = forms.IntegerField
+	
 	class meta:
 		model = CommunityExtraRatings
 		exclude = ('user', 'community')
