@@ -23,3 +23,7 @@ class CommunityExtraRatingsForm(forms.ModelForm):
 	class Meta:
 		model = CommunityExtraRatings
 		exclude = ('user', 'community')
+		widgets = {
+		'extra_comments': forms.Textarea(attrs={'placeholder': 'Describe some other thoughts that you have about community here (Optional)'}),
+		'how_can_we_improve_survey': forms.TextArea(attrs={'placeholder': 'We take data collection very seriously and would love to hear student\'s thoughts about how it can be improved (Optional)'}),
+		}

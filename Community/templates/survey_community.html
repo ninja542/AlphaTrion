@@ -9,6 +9,10 @@
 	display:inline-block;
 }
 
+li {
+	display: inline-block;
+}
+
 </style>
 {% endblock %}
 
@@ -25,7 +29,7 @@
 		<p>What did you think of {{ games }} 
 		
 		{% load static %}
-		<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="guck">
+		<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="info">
 
 		</p>
 		{% load extras %}
@@ -36,6 +40,8 @@
 
 	</tr>
 	</table>
+
+	{% else %}
 	{% endif %}
 
 	<table>
@@ -46,6 +52,7 @@
 	</table>
 	<table>
 		<tr>
+			<p>To get a general sense of how community went, please answer the following questions:</p>
 			{{ extra_ratings }}
 		</tr>
 	</table>
