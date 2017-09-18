@@ -23,7 +23,7 @@ class CommunityInst(models.Model):
     spectrum_id = models.PositiveIntegerField(default=0)
     occuring_games = models.ManyToManyField(Game, through='CommunityGames')
     minutes_ended_early = models.PositiveIntegerField(blank=False, default=5)
-    photo = S3DirectField(dest='images')
+    photo = S3DirectField(dest='community')
 
 
     def __str__(self):
