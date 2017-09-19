@@ -88,7 +88,7 @@ S3DIRECT_DESTINATIONS = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_DIR, "templates"),],
+        'DIRS': [os.path.join(PROJECT_DIR, "templates"), './templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -163,6 +163,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+LOGIN_REDIRECT_URL = '/'
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

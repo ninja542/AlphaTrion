@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/home/')),
     url(r'^home/', include('Home.urls')),
     url(r'^s3direct/', include('s3direct.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls'))
 
 ]
