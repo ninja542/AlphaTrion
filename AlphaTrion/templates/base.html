@@ -50,6 +50,10 @@ window.onresize = resizehandler
 </script>
 
 <style type='text/css'>
+html, body{
+	margin: 0;
+	padding 0;	
+}
 
 .oheader{
 	z-index: 100;
@@ -200,9 +204,9 @@ window.onresize = resizehandler
 		{% endif %}
 
 		{% if request.user.is_authenticated %}
-		<li style=''class='nav-item'><a class = 'link' href=''>Logout</a></li>
+		<li style=''class='nav-item'><a class = 'link' href="{% url 'logout' %}">Logout</a></li>
 		{% else %}
-		<li style=''class='nav-item'><a class = 'link' href=''>Login</a></li>
+		<li style=''class='nav-item'><a class = 'link' href="{% url 'login' %}">Login</a></li>
 		{% endif %}
 	</ul>
 </nav>

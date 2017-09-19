@@ -84,7 +84,7 @@ body {
 	{% endif %}
 	{% else %}
 	<div>
-	<p style='position: absolute; display: block; padding-top: 100px'>You're not logged in! Log in <a href=''>here</a></p>
+	<p style='position: absolute; display: block; padding-top: 100px'>You're not logged in! Log in <a href="{% url 'login' %}">here</a></p>
 	</div>
 	{% endif %}
 

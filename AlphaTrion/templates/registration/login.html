@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+
+{% block style %}
+<style type='text/css'>
+.loginform{
+	padding-top: 35px;
+
+}
+</style>
+
+
 {% block content %}
 
 {% if form.errors %}
@@ -13,7 +23,7 @@
 	{% endif %}
 {% endif %}
 
-<form method='post' action="{% url 'login' %}">
+<form class='loginform' method='post' action="{% url 'login' %}">
 	{% csrf_token %}
 	<div>
 		<td>{{ form.username.label_tag }}</td>
