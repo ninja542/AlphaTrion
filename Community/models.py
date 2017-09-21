@@ -86,6 +86,10 @@ class CommunityExtraRatings(models.Model):
     extra_comments = models.TextField(blank=True)
     how_can_we_improve_survey = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name='Community Extra Ratings'
+        verbose_name_plural='Community Extra Ratings'
+
     def __str__(self):
         return "{}-{}".format(self.user, self.community)
 

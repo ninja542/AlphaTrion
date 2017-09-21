@@ -25,43 +25,32 @@ li {
 	{% if community.occuring_games.all %}
 	{% for games in community.occuring_games.all %}
 	
-	<table>
-	<tr>
-		<p>What did you think of {{ games }} 
+	<p>What did you think of {{ games }} 
 		
-		{% load static %}
-		<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="info">
+	{% load static %}
+	<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="info">
 
-		</p>
-		{% load extras %}
-		{% with x=game_form_dict|key:games.name %}
-		{{ x }}
-		{% endwith %}
-		{% endfor %}
+	</p>
+	{% load extras %}
+	{% with x=game_form_dict|key:games.name %}
+	{{ x }}
+	{% endwith %}
+	{% endfor %}
 
-	</tr>
-	</table>
 	
 	{% else %}
 	{% endif %}
 	
 	<br>
 	
-	<table>
-	<tr>
 	<p>Please rate what you thought of this community's pacing</p>
 	{{ pacing_section }}
-	</tr>
-	</table>
 
 	<br>
 
-	<table>
-		<tr>
-			<p>To get a general sense of how community went, please answer the following questions:</p>
-			{{ extra_ratings }}
-		</tr>
-	</table>
+	<p>To get a general sense of how community went, please answer the following questions:</p>
+	{{ extra_ratings }}
+
 
 	<input type='submit' value="Submit">
 	</form>
