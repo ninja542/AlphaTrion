@@ -1,32 +1,11 @@
-# PRIORITY # 
-Implement Community Extras into Community Survey 
-Login/Logout system. 
+# Finish work on Projects page # 
+# Begin to design for Commities Page # 
+# Develop a system to add custom surveys without programtically adding database models (This one should be a good challenge.) #
+# CSS fixes (make it look nice) #
 
 
-# Somewhere # 
-Begin writing documentation for Senate so that the db isn't destoryed as soon as it's launched (that would preferablly come much later when the entire website is depreciated and nobody learned how to update it.)
-
-# IN community/models.py # 
+# IN community/models.py # 	
 Finish Community Surveys 
-
-#IN community/survey_list.html 
-Figure out what to do if comunitysurvey_list returns 0 
 
 #IN community/survey_specific_result, community/views.py # 
 Just fix this mess. 
-
-
-#### WARNINGS #### 
-Community Instance Image paths are a little wonky and have formatting done on them in the tempalte, watch out for that if 
-it needs to be changed in release. 
-
-
-### LEFT OFF 9/15/17 ### 
-Senator page, need photos to match. 2x5 list. 
-
-
-### NAVIAGATION ###
-Figure out this static file thing. Jeeze. 
-
-### META ### 
-Make a second settings file 
