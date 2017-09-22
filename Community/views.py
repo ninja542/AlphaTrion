@@ -1,5 +1,4 @@
-from __future__ import division
-import matplotlib.pyplot as plt
+from __future__ import division	
 import numpy as np
 from django.shortcuts import render
 from django.views import generic 	
