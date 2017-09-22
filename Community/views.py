@@ -23,7 +23,7 @@ class CommunityInstView(generic.ListView):
 	template_name = 'survey_list.html'
 
 @login_required
-@user_passes_test(lambda u: u.groups.filter(name="Senate").exists(), login_url='/accounts/login')
+@user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def communityinstviewresults(request):
 	communities = CommunityInst.objects.all()
 	return render(request, 'survey_result_list.html', {'communityinst': communities})
@@ -90,7 +90,8 @@ def review_community_instance(request, communityid, userid):
 
 	return render(request, 'survey_community.html', {'community': community, 'game_form_dict': game_form_dict, 'user': user, 'pacing_section': pacing_section, 'extra_ratings': extra_section})
 
-
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def survey_results(request, communityid):
 	JS_CODE = """ 
 	# Taken from https://bokeh.pydata.org/en/latest/docs/user_guide/extensions_gallery/wrapping.html
