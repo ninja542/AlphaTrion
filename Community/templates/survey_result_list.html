@@ -4,7 +4,8 @@
 <title>Community Surveys</title>
 {% endblock %}
 
-{% block content %}
+
+{% block style %}
 <style type='text/css'>
 .survey{
 	width:33.33333%;
@@ -43,6 +44,8 @@
 }
 
 </style>
+{% endblock %}
+{% block content %}
 	{% if communityinst %}
 	{% for communities in communityinst %}
 	<article id='{{ communities.date }}' class='survey'> 

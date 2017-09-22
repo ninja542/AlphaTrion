@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css" type="text/css" />
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <h1>{{mean}}</h1>
 <br>
+
+
+{{ div | safe }}
+{{ script | safe }}
 
 <div class="individual-ratings"> 
 

@@ -25,12 +25,12 @@ li {
 	{% if community.occuring_games.all %}
 	{% for games in community.occuring_games.all %}
 	
-	<p>What did you think of {{ games }} 
+	<label>What did you think of {{ games }} 
 		
 	{% load static %}
 	<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="info">
 
-	</p>
+	</label>
 	{% load extras %}
 	{% with x=game_form_dict|key:games.name %}
 	{{ x }}
@@ -43,12 +43,12 @@ li {
 	
 	<br>
 	
-	<p>Please rate what you thought of this community's pacing</p>
+	<label>Please rate what you thought of this community's pacing</label>
 	{{ pacing_section }}
 
 	<br>
 
-	<p>To get a general sense of how community went, please answer the following questions:</p>
+	<label>To get a general sense of how community went, please answer the following questions:</label>
 	{{ extra_ratings }}
 
 

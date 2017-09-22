@@ -1,3 +1,6 @@
+from __future__ import division
+import matplotlib.pyplot as plt
+import numpy as np
 from django.shortcuts import render
 from django.views import generic 	
 from django.urls import reverse
@@ -7,7 +10,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
 from django.contrib.auth.models import Group
-from .models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings
+from bokeh.plotting import figure, output_file, show
+from bokeh.embed import components
+from bokeh.core.properties import Instance, String 
+from bokeh.models import ColumnDataSource, LayoutDOM
+from bokeh.io import show
+from .models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings, Game
 from .forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
 
 
@@ -16,7 +24,7 @@ class CommunityInstView(generic.ListView):
 	template_name = 'survey_list.html'
 
 @login_required
-@user_passes_test(lambda u: u.groups.filter(name="Senate Members").exists(), login_url='/community/home')
+@user_passes_test(lambda u: u.groups.filter(name="Senate").exists(), login_url='/accounts/login')
 def communityinstviewresults(request):
 	communities = CommunityInst.objects.all()
 	return render(request, 'survey_result_list.html', {'communityinst': communities})
@@ -85,9 +93,74 @@ def review_community_instance(request, communityid, userid):
 
 
 def survey_results(request, communityid):
+	JS_CODE = """ 
+	# Taken from https://bokeh.pydata.org/en/latest/docs/user_guide/extensions_gallery/wrapping.html
+
+	import * as p from "core/properties"
+	import {LayoutDOM, LayoutDOMView} from "models/layouts/layout_dom"
+
+	OPTIONS =
+	  width:  '600px'
+	  height: '600px'
+	  style: 'dot-line'
+	  showPerspective: true
+	  showGrid: true
+	  keepAspectRatio: false
+	  verticalRatio: 1.0
+	  legendLabel: 'stuff'
+	  cameraPosition:
+	    horizontal: -0.35
+	    vertical: 0.22
+	    distance: 1.8
+
+	export class Surface3dView extends LayoutDOMView
+	  initialize: (options) ->
+	    super(options)
+
+	    url = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"
+
+	    script = document.createElement('script')
+	    script.src = url
+	    script.async = false
+	    script.onreadystatechange = script.onload = () => @_init()
+	    document.querySelector("head").appendChild(script)
+
+	  _init: () ->
+	    @_graph = new vis.Graph3d(@el, @get_data(), OPTIONS)
+	    @connect(@model.data_source.change, () =>
+	        @_graph.setData(@get_data())
+	    )
+
+	  get_data: () ->
+	    data = new vis.DataSet()
+	    source = @model.data_source
+	    for i in [0...source.get_length()]
+	      data.add({
+	        x:     source.get_column(@model.x)[i]
+	        y:     source.get_column(@model.y)[i]
+	        z:     source.get_column(@model.z)[i]
+	        style: source.get_column(@model.color)[i]
+	      })
+	    return data
+
+
+	export class Surface3d extends LayoutDOM
+	  default_view: Surface3dView
+	  type: "Surface3d"
+
+
+	  @define {
+	    x:           [ p.String           ]
+	    y:           [ p.String           ]
+	    z:           [ p.String           ]
+	    color:       [ p.String           ]
+	    data_source: [ p.Instance         ]
+	  }
+	"""
 	community = get_object_or_404(CommunityInst, pk=communityid)	
 	game_rating_dict = dict()
 	counter = 0
+	index = 0
 	total_sum = 0 
 	for games in CommunityGames.objects.filter(communityinst=community):
 		for instances in CommunityGameRatings.objects.filter(games=games):
@@ -95,10 +168,35 @@ def survey_results(request, communityid):
 			total_sum += instances.game_rating
 			counter += 1 
 
-		mean = total_sum/counter
+	mean = total_sum/counter 
+	class Surface3d(LayoutDOM):
+	    '''This is taken from the Surface 3d example on bokeh'''
+	    __implementation__ = JS_CODE
+	    data_source = Instance(ColumnDataSource)
+	    x = String
+	    y = String
+	    z = String
+	    color = String
 
-	return render(request, 'survey_specific_result.html', {'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, })
+	z = []
+	x = []
+	y = []
 
+	for games in game_rating_dict.values():
+		z.append(games.game_rating)
+	for games in game_rating_dict.values():
+		x.append(games.games.game.number_of_participants)
+	for games in game_rating_dict.values():
+		y.append(games.games.game.number_of_participants)
 
+	xx, yy = np.meshgrid(x, y)
+	xx = xx.ravel()
+	yy = yy.ravel()
+	value = z
 
+	source = ColumnDataSource(data=dict(x=x, y=y, z=value, color=value))
 
+	surface = Surface3d(x="x", y="y", z="z", color="color", data_source=source)
+	script, div = components(surface)
+
+	return render(request, 'survey_specific_result.html', {'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 'script': script, 'div': div})
