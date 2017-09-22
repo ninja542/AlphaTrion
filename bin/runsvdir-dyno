@@ -16,4 +16,7 @@ mkdir "$SERVICE_DIR"
 
 bin/runsvdir-populate-service-dir "$SERVICE_DIR" "$PS_PROCFILE"
 
+install http://mirrors.kernel.org/ubuntu/pool/universe/r/runit/runit_2.1.1-6.2ubuntu3_amd64.deb
+
+
 exec runsvdir "$SERVICE_DIR"
