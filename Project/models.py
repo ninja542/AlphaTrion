@@ -15,6 +15,9 @@ class SurveyQuestions(models.Model):
 	survey = models.ForeignKey(CustomSurvey)
 	question = models.ForeignKey(Questions)
 
+class SenateProjects(models.Model):
+	date = models.DateField()
+	author = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'is_senators': True})
 
 
 
