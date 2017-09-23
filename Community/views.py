@@ -99,15 +99,19 @@ def survey_results(request, communityid):
 	import * as p from "core/properties"
 	import {LayoutDOM, LayoutDOMView} from "models/layouts/layout_dom"
 
-	OPTIONS =
+	OPTIONS = 
 	  width:  '600px'
 	  height: '600px'
 	  style: 'dot-line'
 	  showPerspective: true
 	  showGrid: true
-	  keepAspectRatio: false
+	  keepAspectRatio: true
 	  verticalRatio: 1.0
 	  legendLabel: 'stuff'
+	  showlegend: true
+	  xLabel: 'Number of Participants'
+	  yLabel: 'Length Of Game'
+	  zLabel: 'Overall Rating'
 	  cameraPosition:
 	    horizontal: -0.35
 	    vertical: 0.22

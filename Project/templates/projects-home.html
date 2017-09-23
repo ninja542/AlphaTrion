@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Projects</title>{% endblock %}
+
+{% block style %}
+<style type='text/css'>
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+#Senate{
+	width: 50%;
+	height: 50%;
+}
+
+#Student{
+	width: 50%;
+	height: 50%;
+}
+
+
+.thumbnail{
+	width: 100%;
+	height: auto;
+}
+
+
+
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<article id='Senate' class='article'>
+	<div class='Thumbnail'>
+		<a href=''><img src=''></a>
+	</div>
+
+	<div class='title'>
+		<h1><a href=''>SENATE PROJECTS</a></h1>
+	</div>
+</article>
+
+<article id='Student' class='article'>
+	<div class='thumbnail'>
+		<a href=''><img src=''></a>
+	</div>
+
+	<div class='title'>
+		<h1><a href=''>STUDENT PROJECTS</a></h1>
+	</div>
+</article>
+
+
+
+{% endblock %}
