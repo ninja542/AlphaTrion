@@ -6,7 +6,7 @@
 
   "dependencies": {
     "express": "^4.13.3",
-    "bokeh": "0.12.9",
+    "bokeh": "0.5.1",
     "vis": "4.20.1"
   },
   "engines": {
