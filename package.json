@@ -5,7 +5,9 @@
   "main": "index.js",
 
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "bokeh": "0.12.9",
+    "vis": "4.20.1"
   },
   "engines": {
     "node": "6.10.0"
