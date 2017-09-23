@@ -7,5 +7,5 @@ urlpatterns = [
 	url(r'^senateprojects/$', views.senate_projects, name='senate-projects-home'),
 	url(r'^senateprojects/(?P<projectid>\d+)/$', views.senate_project_specific, name='senate-project-specific'),
 	url(r'^studentprojects/$', views.student_projects, name='student-projects-home'),
-	url(r'^studentprojects/(?P<projectid>\d+)/$', views.student_project_specfic, name='sutdent-project-specific'),
+	url(r'^studentprojects/(?P<projectid>\d+)/$', views.student_project_specific, name='sutdent-project-specific'),
 ]
