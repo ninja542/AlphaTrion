@@ -11,8 +11,5 @@ def senate_projects(request):
 def senate_project_specific(request):
 	return render(request, 'senate-project-specific.html')
 
-def student_projects(request):
-	return render(request, 'student-project.html')
-	
 def student_project_specific(request):
 	return render(request, 'student-project-specific.html')
