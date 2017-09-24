@@ -31,10 +31,11 @@ def student_projects(request):
 
 def senate_projects(request):
 	senate_projects = SenateProjects.objects.all()
-	return render(request, 'senate-projects.html', {'senate-projects': senate_projects})
+	return render(request, 'senate-projects.html', {'senate_projects': senate_projects})
 
-def senate_project_specific(request):
-	return render(request, 'senate-project-specific.html')
+def senate_project_specific(request, projectid):
+	project = get_object_or_404(SenateProjects, pk=projectid)
+	return render(request, 'senate-project-specific.html', {'project': project})
 
 def student_project_specific(request):
 	return render(request, 'student-project-specific.html')

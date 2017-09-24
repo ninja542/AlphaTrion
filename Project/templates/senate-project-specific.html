@@ -1,0 +1,38 @@
+{% extends 'base-nonav.html' %}
+{% block title %}<title>{{ project.title }}</title>{% endblock %}
+
+{% block style %}
+<style text='type/css'>
+html, body{
+	height: 100%;
+	width: 100%;
+}
+
+.title{
+	text-align: center;
+}
+
+.description{
+	text-align: center;
+}
+
+.survey-link{
+	text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class='title'>
+{{ project.title }}
+</div>
+
+<div class='description'>
+{{ project.description }}
+</div>
+
+{% if project.survey %}
+	<p class='survey-link'><a class='survey-link' href='{% url 'senate-project-survey' project.id %}'>Survey</a></p>
+{% else %}
+{% endif %}
+{% endblock %}

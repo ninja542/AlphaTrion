@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}<title>Senate Projects</title>{% endblock %}
+{% block content %}
+{% if senate_projects %}
+	{% for projects in senate_projects %}
+	<article class='articles' id='{{ projects.title }}'>
+		<img class='thumbnail' src={{ projects.image }}>
+		<h1 class='title'><a href='{% url 'senate-project-specific' projects.id %}'>{{ projects.title }}</a></h1> 
+	</article>
+	{% endfor %}
+{% else %}
+<p>No Senate Projects to display!</p>
+{% endif %}
+{% endblock %}

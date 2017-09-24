@@ -9,5 +9,4 @@ urlpatterns = [
 	url(r'^studentprojects/$', views.student_projects, name='student-projects-home'),
 	url(r'^studentprojects/(?P<projectid>\d+)/$', views.student_project_specific, name='student-project-specific'),
 	url(r'^senateprojects/survey/(?P<projectid>\d+)/$', views.senate_project_survey, name='senate-project-survey'),
-
 ]

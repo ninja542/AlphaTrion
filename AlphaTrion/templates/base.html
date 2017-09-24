@@ -192,9 +192,9 @@ html, body{
 		{% endif %}
 
 		{% if request.path == '/projects/' %}
-		<li class='nav-item'><a class = 'link-selected' href=''>Projects</a></li>
+		<li class='nav-item'><a class = 'link-selected' href='{% url 'projects-home' %}'>Projects</a></li>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href=''>Projects</a></li>
+		<li class='nav-item'><a class = 'link' href='{% url 'projects-home' %}'>Projects</a></li>
 		{% endif %}
 
 		{% if request.path == '/senate/' %}

@@ -68,13 +68,12 @@ body {
 		<div class='thumbnail'>
 			{% load static %} 
 			<a href='{% url 'community-review' communities.id request.user.id %}'>
-			<img class='thumbnail' src='{{communities.photo }}'></a>
+			<img class='thumbnail' src='{{ communities.photo }}'></a>
 		</div>
 
 		<div class='survey-title'>
 			<h1 class='date'>
-			<!-- % url 'community-review' communities.id request.user.id %} -->
-			<a class = 'entry-link' href="{% url 'community-review' communities.id request.user.id %}">{{communities.date}}</a>
+			<a class = 'entry-link' href="{% url 'community-review' communities.id request.user.id %}">{{ communities.date }}</a>
 			</h1>
 		</div>
 	</article>
