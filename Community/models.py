@@ -22,8 +22,8 @@ RATING_CHOICES = (
 class Game(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField(blank=True, default="No decription")
-    estimated_length = models.PositiveIntegerField(help_text="Minutes", blank=False, default=10)
-    number_of_participants = models.PositiveIntegerField(blank=False, default=1)
+    estimated_length = models.PositiveIntegerField(help_text="Minutes", default=10)
+    number_of_participants = models.PositiveIntegerField(default=1)
     
     def __str__(self):
         return "{}".format(self.name)
@@ -33,7 +33,7 @@ class CommunityInst(models.Model):
     date = models.DateField(default=timezone.now)
     spectrum_id = models.PositiveIntegerField(default=0)
     occuring_games = models.ManyToManyField(Game, through='CommunityGames')
-    minutes_ended_early = models.PositiveIntegerField(blank=False, default=5)
+    minutes_ended_early = models.PositiveIntegerField(default=5)
     photo = S3DirectField(dest='community')
 
 
@@ -62,14 +62,14 @@ class CommunityGameRatings(models.Model):
     user = models.ForeignKey(User)
     games = models.ForeignKey(CommunityGames)
 
-    game_rating = models.PositiveIntegerField(blank=False, choices=RATING_CHOICES, default=5)
+    game_rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=5)
     
     LIKE_TO_SEE_AGAIN = (
         ('y', 'Yes'),
         ('n', 'No')
     )
 
-    like_to_see_again = models.CharField(max_length=1, choices=LIKE_TO_SEE_AGAIN, blank=False, default='n')
+    like_to_see_again = models.CharField(max_length=1, choices=LIKE_TO_SEE_AGAIN, default='n')
     game_comments = models.TextField(blank=True, null=True,)
 
     class Meta:
@@ -82,9 +82,9 @@ class CommunityGameRatings(models.Model):
 class CommunityExtraRatings(models.Model):
     user = models.ForeignKey(User)
     community = models.ForeignKey(CommunityInst)
-    overall_rating = models.PositiveIntegerField(blank=False, default=5, choices=RATING_CHOICES)
+    overall_rating = models.PositiveIntegerField(default=5, choices=RATING_CHOICES)
     extra_comments = models.TextField(blank=True)
-    how_can_we_improve_survey = models.TextField(blank=True)
+    how_can_we_improve_survey = models.TextField()
 
     class Meta:
         verbose_name='Community Extra Ratings'

@@ -24,5 +24,6 @@ class Senator(models.Model):
 	photo = S3DirectField(dest='images')
 	def __str__(self):
 		return self.name
+		
 	class Meta:
 		ordering = ["-grade", "name"]

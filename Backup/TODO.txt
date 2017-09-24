@@ -15,3 +15,6 @@ Senate custom surveys for park field trip (/projects/senate/parktrip2017)
 #IN community/survey_specific_result, community/views.py # 
 Add Overall Survey Data Analytics
 Just fix this mess. 
+
+### Project - Forms.py ### 
+Finish working on the save function 

@@ -1,0 +1,16 @@
+{% extends 'base-nonav.html' %}
+{% block style %}
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<h1> Scatter Plot of Game Ratings</h1>
+<div class='3Dscatter'>
+{{ div | safe }}
+{{ script | safe }}
+</div>
+
+<h1>
+{% endblock %}

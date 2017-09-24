@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^communitysurvey/(?P<communityid>\d+)/(?P<userid>\d+)/$', views.review_community_instance, name='community-review'),
 	url(r'^communitysurveyresults/(?P<communityid>\d+)/$', views.survey_results, name='community-results-specific'),
 	url(r'^communitysurveyresults/$', views.communityinstviewresults, name='community-results'),
+	url(r'^communitysurveyoverallresults/$', views.overall_survey_results, name='overall-community-results')
 ]
