@@ -1,20 +1,21 @@
 # Finish work on Projects page # 
 # Begin to design for Commities Page # 
-# Develop a system to add custom surveys without programtically adding database models (This one should be a good challenge.) #
 # CSS fixes (make it look nice) #
-
 
 # IN community/models.py # 	
 Finish Community Surveys 
 
 # Projects # 
-Senate Projects Page (/projects/senate)
-Student Projects PAge (/projects/student)
-Senate custom surveys for park field trip (/projects/senate/parktrip2017)
+Finish Student projects, add a method of creating a custom survey, and finally start on adding a method for students to actaully be able to add stuff 
+Work on upvote system in Student projects. 
 
 #IN community/survey_specific_result, community/views.py # 
 Add Overall Survey Data Analytics
 Just fix this mess. 
 
-### Project - Forms.py ### 
-Finish working on the save function 
+# Commities #
+Student comities? 
+Senate comities? 
+Comitie suggestion?
+A page for every commity? 
+Definitly a commity model. 
