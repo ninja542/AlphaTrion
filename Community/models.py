@@ -5,6 +5,12 @@ from django.utils import timezone
 from s3direct.fields import S3DirectField
 import uuid
 
+def get_first_name(self):
+    return self.first_name
+
+User.add_to_class("__str__", get_first_name)
+
+
 RATING_CHOICES = (
     (1, '1'),
     (2, '2'),
@@ -77,7 +83,7 @@ class CommunityGameRatings(models.Model):
         verbose_name_plural = 'Community Game Ratings'
 
     def __str__(self):
-        return "{}-{}".format(self.user, self.games)
+        return "{}-{}".format(self.user.first_name, self.games)
 
 class CommunityExtraRatings(models.Model):
     user = models.ForeignKey(User)
@@ -91,7 +97,7 @@ class CommunityExtraRatings(models.Model):
         verbose_name_plural='Community Extra Ratings'
 
     def __str__(self):
-        return "{}-{}".format(self.user, self.community)
+        return "{}-{}".format(self.user.first_name, self.community)
 
 class CommunityPacingRatings(models.Model):
     user = models.ForeignKey(User)
@@ -110,5 +116,5 @@ class CommunityPacingRatings(models.Model):
         verbose_name='Community Pacing Ratings'
         verbose_name_plural='Community Pacing Ratings'
     def __str__(self):
-        return "{}-{}".format(self.user, self.community)
+        return "{}-{}".format(self.user.first_name, self.community)
 

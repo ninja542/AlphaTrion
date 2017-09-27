@@ -6,16 +6,58 @@
 Finish Community Surveys 
 
 # Projects # 
-Finish Student projects, add a method of creating a custom survey, and finally start on adding a method for students to actaully be able to add stuff 
+Finish Student projects and start on adding a method for students to actaully be able to add stuff 
 Work on upvote system in Student projects. 
+
+# Community # 
+Add ability to add custom survey into community surveys for full extendability. 
 
 #IN community/survey_specific_result, community/views.py # 
 Add Overall Survey Data Analytics
 Just fix this mess. 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Commities #
-Student comities? 
-Senate comities? 
+WHAT ARE COMMITTEES
+Student COMMITTEES? - Is this just projects? Did I make COMMITTEES but wrong? No. Projects are always one-shot. 
+Thanksgiving COMMITTEE makes more sense as a project instead of being part of spirit COMMITTEE (they are loosly connected).
+Halloween makes more sense under spirit COMMITTEE. (does it though?)
+Does Dance make more sense as a project? Possibly? I don't see its purpose as a COMMITTEE. It's not like there's much of a differnece, just that COMMITTEE have staying power. 
+Park is obviously a project. 
+Senate COMMITTEE? 
 Comitie suggestion?
-A page for every commity? 
-Definitly a commity model. 
+A page for every COMMITTEE? 
+Definitly a COMMITTEE model. 
+Do Commities need surveys? 
+Should there be a survey to figure out what I need in COMMITTEES? Probably. 

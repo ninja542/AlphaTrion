@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User 
 from s3direct.fields import S3DirectField
 
+def get_first_name(self):
+	return self.first_name
+
+User.add_to_class("__str__", get_first_name)
+
 class Questions(models.Model):
 	# Based on https://github.com/jessykate/django-survey/blob/master/survey/models.py
 	TEXT = 'TEXT'
@@ -42,11 +47,15 @@ class SurveyQuestions(models.Model):
 	class Meta:
 		verbose_name = 'Survey Question'
 		verbose_name_plural = 'Survey Questions'
-
+	def __str__(self):
+		return ("{}-{}".format(self.survey.title, self.question.question))
 
 class SurveyAnswers(models.Model):
 	survey = models.ForeignKey(CustomSurvey, null=True)
 	question = models.ForeignKey(Questions)
+
+	def __str__(self):
+		return ("{}-{}".format(self.survey.title, self.question.question))
 
 class AnswerInt(SurveyAnswers):
 	user = models.ForeignKey(User)
@@ -55,6 +64,9 @@ class AnswerInt(SurveyAnswers):
 	class Meta:
 		verbose_name = 'Integer Answers'
 		verbose_name_plural = 'Integer Answers'
+	
+	def __str__(self):
+		return ("{}-{}".format(self.user.first_name, self.answer))
 
 
 class AnswerText(SurveyAnswers):
@@ -64,6 +76,10 @@ class AnswerText(SurveyAnswers):
 	class Meta:
 		verbose_name = 'Text Answers'
 		verbose_name_plural = 'Text Answers'
+
+	def __str__(self):
+		return ('{}-{}'.format(self.user.username, self.answer))
+
 
 
 class SenateProjects(models.Model):
