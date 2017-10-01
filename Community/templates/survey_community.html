@@ -24,7 +24,8 @@ li {
 	{% csrf_token %}
 	{% if community.occuring_games.all %}
 	{% for games in community.occuring_games.all %}
-	
+	<table>
+	<tr>
 	<label>What did you think of {{ games }} 
 		
 	{% load static %}
@@ -36,21 +37,28 @@ li {
 	{{ x }}
 	{% endwith %}
 	{% endfor %}
-
+	</tr>
+	</table>
 	
 	{% else %}
 	{% endif %}
 	
 	<br>
 	
-	<label>Please rate what you thought of this community's pacing</label>
-	{{ pacing_section }}
-
+	<table>
+		<tr>
+			<label>Please rate what you thought of this community's pacing</label>
+			{{ pacing_section }}
+		</tr>
+	</table>
 	<br>
 
-	<label>To get a general sense of how community went, please answer the following questions:</label>
-	{{ extra_ratings }}
-
+	<table>
+		<tr>
+			<label>To get a general sense of how community went, please answer the following questions:</label>
+			{{ extra_ratings }}
+		</tr>
+	</table>
 
 	<input type='submit' value="Submit">
 	</form>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import CustomSurveyForm
-from .models import SenateProjects
+from .models import SenateProjects, StudentProjects
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -27,7 +27,8 @@ def projects_home(request):
 	return render(request, 'projects-home.html')
 
 def student_projects(request):
-	return render(request, 'student-projects.html')
+	student_projects = StudentProjects.objects.all()
+	return render(request, 'student-projects.html', {'student_projects': student_projects})
 
 def senate_projects(request):
 	senate_projects = SenateProjects.objects.all()

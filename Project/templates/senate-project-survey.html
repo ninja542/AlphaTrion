@@ -1,8 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'base-nonav.html' %}
 {% block content %}
+
 <form method="POST">
 {% csrf_token %}
-{{ survey }}
+<table>
+	<tr>
+		{{ survey }}
+	</tr>
+</table>
+
 <input type='submit' value="Submit">
 </form>
+
 {% endblock %}

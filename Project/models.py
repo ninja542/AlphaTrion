@@ -96,3 +96,18 @@ class SenateProjects(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class StudentProjects(models.Model):
+	title = models.CharField(max_length=200, null=True)
+	author = models.ForeignKey(User, limit_choices_to={'groups__name': 'Students'})
+	date = models.DateField()
+	description = models.TextField(default='Insert description here')
+	survey = models.ForeignKey(CustomSurvey, on_delete=models.CASCADE, blank=True, null=True)
+	image = S3DirectField(dest='senateprojects', null=True)
+
+	class Meta:
+		verbose_name = 'Student Project'
+		verbose_name_plural = 'Student Projects'
+
+	def __str__(self):
+		return self.title 

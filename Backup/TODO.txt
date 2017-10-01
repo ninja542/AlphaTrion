@@ -16,38 +16,6 @@ Add ability to add custom survey into community surveys for full extendability.
 Add Overall Survey Data Analytics
 Just fix this mess. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Commities #
 WHAT ARE COMMITTEES
 Student COMMITTEES? - Is this just projects? Did I make COMMITTEES but wrong? No. Projects are always one-shot. 

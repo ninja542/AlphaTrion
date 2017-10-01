@@ -197,6 +197,8 @@ def survey_results(request, communityid):
 	return render(request, 'survey_specific_result.html', {'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 'script': script, 'div': div})
 
 
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def overall_survey_results(request):
 	z = [] 
 	x = [] 
