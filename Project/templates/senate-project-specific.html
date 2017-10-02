@@ -4,6 +4,7 @@
 {% block style %}
 <style text='type/css'>
 html, body{
+	margin: 0;
 	height: 100%;
 	width: 100%;
 }
@@ -19,23 +20,35 @@ html, body{
 .survey-link{
 	text-align: center;
 }
+
+
+.photo{
+	background-color: rgba(143, 40, 55, 1);
+}
+
+.picture{
+	margin: auto;
+	display: block;
+	width: 50%;
+	height: 50%;
+}
 </style>
 {% endblock %}
 
 {% block content %}
 <div class='photo'>
-	<img src='{{ project.image }}'>
+	<img class='picture' src='{{ project.image }}'>
 </div>
 <div class='title'>
-{{ project.title }}
+<h1>{{ project.title }}</h1>
 </div>
 
 <div class='description'>
-{{ project.description }}
+<h2>{{ project.description }}</h2>
 </div>
 
 {% if project.survey %}
-	<p class='survey-link'><a class='survey-link' href='{% url 'senate-project-survey' project.id %}'>Survey</a></p>
+	<h3><p class='survey-link'><a class='survey-link' href='{% url 'senate-project-survey' project.id %}'>Survey</a></p></h3>
 {% else %}
 {% endif %}
 {% endblock %}
