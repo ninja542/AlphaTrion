@@ -55,7 +55,7 @@ html, body{
 {% if senate_projects %}
 	{% for projects in senate_projects %}
 	<article class='articles' id='{{ projects.title }}'>
-		<img class='thumbnail' src='{{ projects.image }}'>
+		<a href='{% url 'senate-project-specific' projects.id %}'><img class='thumbnail' src='{{ projects.image }}'></a>
 		<h1 class='title'><a class='title' href='{% url 'senate-project-specific' projects.id %}'>{{ projects.title }}</a></h1> 
 	</article>
 	{% endfor %}
