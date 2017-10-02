@@ -66,7 +66,7 @@ class AnswerInt(SurveyAnswers):
 		verbose_name_plural = 'Integer Answers'
 	
 	def __str__(self):
-		return ("{}-{}".format(self.user.first_name, self.answer))
+		return ('{} {}-{}'.format(self.user.first_name, self.last_name, self.answer))
 
 
 class AnswerText(SurveyAnswers):
@@ -78,7 +78,7 @@ class AnswerText(SurveyAnswers):
 		verbose_name_plural = 'Text Answers'
 
 	def __str__(self):
-		return ('{}-{}'.format(self.user.username, self.answer))
+		return ('{} {}-{}'.format(self.user.first_name, self.last_name, self.answer))
 
 
 

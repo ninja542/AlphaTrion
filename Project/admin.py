@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SurveyQuestions, AnswerText, AnswerInt, CustomSurvey, Questions, SenateProjects
+from .models import SurveyQuestions, AnswerText, AnswerInt, CustomSurvey, Questions, SenateProjects, StudentProjects
 
 @admin.register(SurveyQuestions)
 class SurveyQuestionsAdmin(admin.ModelAdmin):
@@ -24,4 +24,8 @@ class QuestionsAdmin(admin.ModelAdmin):
 @admin.register(SenateProjects)
 class SenateProjectsAdmin(admin.ModelAdmin):
 	model = SenateProjects
+
+@admin.register(StudentProjects)
+class StudentProjectsAdmin(admin.ModelAdmin):
+	model = StudentProjects
 
