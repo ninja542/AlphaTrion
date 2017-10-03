@@ -16,9 +16,11 @@ def senate_project_survey(request, projectid):
 			survey = CustomSurveyForm(request.POST, user=user, survey=survey)
 			if survey.is_valid():
 				survey.save()
-				HttpResponseRedirect('/home/')
+				return HttpResponseRedirect(reverse('senate-projects-home', current_app='Projects'))
+
 		else:
 			survey = CustomSurveyForm(user=user, survey=survey)
+
 
 	return render(request, 'senate-project-survey.html', {'survey': survey})
 
