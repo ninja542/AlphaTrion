@@ -4,7 +4,7 @@ ___
 
 ## Structure
 * Backend Technology 
-	* This website is mostly built on django, however, for many of the graphs it is built of nodejs, bokeh, and vis.js 
+	* This website is mostly built on django, however, for many of the graphs it is built off of nodejs, bokeh, and vis.js 
 
 
 
