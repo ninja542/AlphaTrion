@@ -1,0 +1,13 @@
+
+<!-- 
+Inspired from http://www.hoboes.com/Mimsy/hacks/replicating-djangos-admin/ 
+									and
+https://github.com/django/django/tree/master/django/contrib/admin
+-->
+<a
+	href="/community/add{{ field }}"
+    class="add-another"
+    id="id_form-0-{{ field }}"
+    onclick="return showAddAnotherPopup(this);">
+    <img style='text-decoration: none' src="/static/admin/img/icon-addlink.svg" alt="Add Another"/>
+</a>

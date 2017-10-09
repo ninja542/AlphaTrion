@@ -84,6 +84,7 @@ JS_CODE = """
 	    data_source: [ p.Instance         ]
 	  }
 	"""
+
 class Surface3d(LayoutDOM):
 	'''This is taken from the Surface 3d example on bokeh'''
 	__implementation__ = JS_CODE
@@ -93,10 +94,13 @@ class Surface3d(LayoutDOM):
 	z = String
 	color = String
 
+
 class CommunityInstView(generic.ListView): 
 	model = CommunityInst
 	template_name = 'survey_list.html'
 
+
+# Senator Only - List of communities to view data from page. 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def communityinstviewresults(request):
@@ -104,17 +108,18 @@ def communityinstviewresults(request):
 	return render(request, 'survey_result_list.html', {'communityinst': communities})
 
 
-#def handler400(request):
-#	return render(request, '404.html', status=404)
+# Specfic Survey for a community
+def review_community_instance(request, communityid):
+	user = None
+	if request.user.is_authenticated():
+		user = request.user
+	if not user:
+		return request(request, 'not_logged_in.html')
 
-def review_community_instance(request, communityid, userid):
-	user = get_object_or_404(User, pk=userid) 
+
 	community = get_object_or_404(CommunityInst, pk=communityid)
 	
 	if request.method == "POST":
-		game_valid = False 
-		pacing_valid = False 
-
 		game_form_dict = dict()
 		for games in community.occuring_games.all():
 			game_form_dict[games.name] = CommunityGameRatingsForm(request.POST, prefix='{}'.format(games.name))
@@ -128,9 +133,7 @@ def review_community_instance(request, communityid, userid):
 			else: 
 				pass
 
-
 		if true_condintions == len(game_form_dict.values()):
-			
 			if pacing_section.is_valid():
 				pacing_rating = pacing_section.cleaned_data['pacing_rating']
 				if CommunityPacingRatings.objects.filter(user=user, community=community):
@@ -142,15 +145,27 @@ def review_community_instance(request, communityid, userid):
 				overall_rating = extra_section.cleaned_data['overall_rating']
 				extra_comments = extra_section.cleaned_data['extra_comments']
 				how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
-				CommunityExtraRatings.objects.create(user=user, community=community, overall_rating=overall_rating, extra_comments=extra_comments, how_can_we_improve_survey=how_can_we_improve_survey)
+				CommunityExtraRatings.objects.create(
+					user=user, 
+					community=community, 
+					overall_rating=overall_rating, 
+					extra_comments=extra_comments, 
+					how_can_we_improve_survey=how_can_we_improve_survey
+				)
 
 			for games in community.occuring_games.all():
-				if CommunityGameRatings.objects.filter(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0]):
+				if CommunityGameRatings.objects.filter(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0]): # Checks if the user has submitted a survey for the game
 					raise ValidationError("You've already submitted this survey!")
 				else: 
 					game_rating = game_form_dict[games.name].cleaned_data['game_rating']
 					game_comments = game_form_dict[games.name].cleaned_data['game_comments']
-					CommunityGameRatings.objects.create(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0], game_rating=game_rating, game_comments=game_comments)
+					CommunityGameRatings.objects.create(
+						user=user, 
+						games=CommunityGames.objects.filter(communityinst=community, game=games)[0], 
+						game_rating=game_rating, 
+						game_comments=game_comments
+					)
+
 			return HttpResponseRedirect(reverse('community-home', current_app='Community'))
 
 	else:
@@ -160,11 +175,10 @@ def review_community_instance(request, communityid, userid):
 		pacing_section = CommunityPacingRatingsForm()
 		extra_section = CommunityExtraRatingsForm()
 
-#	if not community.occuring_games.all():
-#		return HttpResponseRedirect('/DBbroke/')
-
 	return render(request, 'survey_community.html', {'community': community, 'game_form_dict': game_form_dict, 'user': user, 'pacing_section': pacing_section, 'extra_ratings': extra_section})
 
+
+# Senate only - Community Survey Results for a specfiic Commnity page
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def survey_results(request, communityid):
@@ -196,7 +210,7 @@ def survey_results(request, communityid):
 
 	return render(request, 'survey_specific_result.html', {'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 'script': script, 'div': div})
 
-
+# Senate Only - Overall survey results for every community. 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def overall_survey_results(request):
@@ -216,3 +230,7 @@ def overall_survey_results(request):
 	script, div = components(surface)
 
 	return render(request, 'survey_overall_results.html', {'div': div, 'script': script})
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='accounts/login')
+

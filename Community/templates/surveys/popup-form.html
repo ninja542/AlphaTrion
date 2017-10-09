@@ -1,0 +1,28 @@
+<!-- 
+Inspired from http://www.hoboes.com/Mimsy/hacks/replicating-djangos-admin/ 
+									and
+https://github.com/django/django/tree/master/django/contrib/admin
+-->
+
+{% extends 'base-nonav.html' %}
+{% block title %}<title>Add {{ field }}</title>{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+{% endblock %} 
+
+{% block content %}
+<h1 style='text-align: center'>Add {{ field }}</h1>
+
+<form method="POST" action="/community/add{{field}}/">
+    {% csrf_token %}
+    <table> 
+        {{ form }}
+    </table>
+
+    <p><input type='submit' value='Submit'> | <a href='javascript:window.close()'>Cancel</a></p>
+
+</form> 
+{% endblock %}

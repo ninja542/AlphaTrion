@@ -1,15 +1,15 @@
 # AlphaTrion
 A website to give Discovery High School students a voice in matters of the Senate. 
-___
+____________________
 
-## Purpose 
+* Purpose Statement
+	* An open communication channel between the Senate and the student body. A mutually beneficial relationship where the Senate is open and communicative with the student body and in turn the student body involves itself with Senate matters. 
 
-* Heal the School, Learn to Code 
-	* However, I am by no means a profesional website developer at this point and this is one of my first maintained repos. Do not expect a 100% fullproof and profesionally maintained Repo, this is for learning. 
-* Backend Technology 
-	* This website is mostly built on django, however, for many of the graphs it is built of nodejs, bokeh, and vis.js 
+* Backend-Technology
+	* Django - Majority of the website 
+	* Vis.js - Most data analysis pages use this js for graphs 
+	* Bokeh - This combined with Javascript is used as a wrapper for vis.js for graphing 
+	* Python 3.5.2 - Language to tie it all together
 
-
-
-
-
+* Documentation 
+	* Documentation can be found in the /Documentation/ folder. 

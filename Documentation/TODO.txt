@@ -2,15 +2,15 @@
 # Begin to design for Commities Page # 
 # CSS fixes (make it look nice) #
 
-# IN community/models.py # 	
-Finish Community Surveys 
+# IN Community # 
+Finish Community Surveys - Add custom survey question ability 
+Fix formatting on the pictures. 
 
 # Projects # 
 Finish Student projects and start on adding a method for students to actaully be able to add stuff 
 Work on upvote system in Student projects. 
+Add ability to ensure that forms can't be submitted twice.
 
-# Community # 
-Add ability to add custom survey into community surveys for full extendability. 
 
 #IN community/survey_specific_result, community/views.py # 
 Add Overall Survey Data Analytics

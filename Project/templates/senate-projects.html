@@ -10,6 +10,10 @@ html, body{
 	height: 100%;
 }
 
+.article-main{
+	object-fit: contain;
+}
+
 .articles{
 	position: relative;
 	margin: 0;
@@ -53,13 +57,15 @@ html, body{
 {% endblock %}
 {% block content %}
 {% if senate_projects %}
+<div class='article-main'>
 	{% for projects in senate_projects %}
 	<article class='articles' id='{{ projects.title }}'>
 		<a href='{% url 'senate-project-specific' projects.id %}'><img class='thumbnail' src='{{ projects.image }}'></a>
 		<h1 class='title'><a class='title' href='{% url 'senate-project-specific' projects.id %}'>{{ projects.title }}</a></h1> 
 	</article>
 	{% endfor %}
+</div>
 {% else %}
-<p>No Senate Projects to display!</p>
+<p style="display: inline-block;">No Senate Projects to display!</p>
 {% endif %}
 {% endblock %}

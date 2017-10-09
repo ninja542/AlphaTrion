@@ -1,0 +1,71 @@
+{% extends 'base-nonav.html' %}
+{% block title %}<title>Add Community</title>{% endblock %}
+{% block script %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script>
+  django.jQuery(function($){
+  	$(".datepicker").datepicker({
+  		changeMonth: true,
+  		changeYear: true, 
+  		dateFormat: 'yy-mm-dd',
+  	});
+ });
+  </script>
+{% endblock %}
+
+{% block style %}
+{{ com.media }}
+<style type='text/css'>
+.main-div{
+	padding-left: 35%;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class='main-div'>
+<form method='POST' id='main-form'> 
+	{% csrf_token %}
+	{{ comgame.management_form }}
+	<div id='form-holder'>
+	<table>
+		<tr>
+			{{ com }}
+		</tr>
+		{{ comgame.as_table }}
+	<input type='button' value='Add Another Game' id='add_more'>
+	</div>
+	</table>
+	<div class='submit-holder'>
+		<input style='' type='submit' value="Submit">	
+	</div>
+</form>
+</div>
+
+<div id="empty_form" style="display:none">
+    <table class='no_error'>
+        {{ comgame.empty_form.as_table }}
+    </table>
+</div>
+<script>
+django.jQuery('#add_more').click(function() { 
+	console.log('TEST')
+	var form_idx = django.jQuery('#id_form-TOTAL_FORMS').val();
+	if (form_idx > 2){
+		alert("There is a maximum of 3 games per community!");
+	}
+	else{
+		console.log(form_idx)
+		django.jQuery('#form-holder').append(django.jQuery('#empty_form').html().replace(/__prefix__/g, form_idx));
+		django.jQuery('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+		console.log(form_idx)
+	}
+});
+</script>
+
+{% endblock %}

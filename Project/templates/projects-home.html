@@ -10,12 +10,21 @@ html, body{
 }
 
 #Senate{
-	padding-top: 50px; 
+	display: inline-block;
+	text-align: center;
 	width: 50%;
 	height: 50%;
 }
 
+#Senate .title-text{
+	text-decoration: none;
+	color: black;
+}
+
 #Student{
+	display: inline-block;
+	float: right;
+	text-align: center;
 	width: 50%;
 	height: 50%;
 }
@@ -24,6 +33,11 @@ html, body{
 .thumbnail{
 	width: 100%;
 	height: auto;
+}
+
+.title .title-text{
+	text-decoration: none;
+	color: black;
 }
 
 
@@ -36,13 +50,14 @@ html, body{
 
 {% block content %}
 
+<div class='content-block' id='main'>
 <article id='Senate' class='article'>
-	<div class='Thumbnail'>
-		<a href=''><img src=''></a>
+	<div id='Thumbnail'>
+		<a href=''><img class='image' src=''></a>
 	</div>
 
-	<div class='title'>
-		<h1><a href='{% url 'senate-projects-home' %}'>SENATE PROJECTS</a></h1>
+	<div id='title'>
+		<h1 class='title-text'><a class='title-text' href='{% url 'senate-projects-home' %}'>SENATE PROJECTS</a></h1>
 	</div>
 </article>
 
@@ -52,10 +67,10 @@ html, body{
 	</div>
 
 	<div class='title'>
-		<h1><a href=''>STUDENT PROJECTS</a></h1>
+		<h1 class='title-text'><a class='title-text' href=''>STUDENT PROJECTS</a></h1>
 	</div>
 </article>
-
+</div>
 
 
 {% endblock %}

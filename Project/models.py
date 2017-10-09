@@ -29,7 +29,6 @@ class Questions(models.Model):
 		verbose_name_plural = 'Questions'
 
 
-
 class CustomSurvey(models.Model):
 	title = models.CharField(max_length=150)
 	date = models.DateField()
@@ -50,12 +49,14 @@ class SurveyQuestions(models.Model):
 	def __str__(self):
 		return ("{}-{}".format(self.survey.title, self.question.question))
 
+
 class SurveyAnswers(models.Model):
 	survey = models.ForeignKey(CustomSurvey, null=True)
 	question = models.ForeignKey(Questions)
 
 	def __str__(self):
 		return ("{}-{}".format(self.survey.title, self.question.question))
+
 
 class AnswerInt(SurveyAnswers):
 	user = models.ForeignKey(User)
@@ -81,7 +82,6 @@ class AnswerText(SurveyAnswers):
 		return ('{} {}-{}'.format(self.user.first_name, self.user.last_name, self.answer))
 
 
-
 class SenateProjects(models.Model):
 	title = models.CharField(max_length=200, null=True)
 	author = models.ForeignKey(User, limit_choices_to={'groups__name': 'Senators'})
@@ -96,6 +96,7 @@ class SenateProjects(models.Model):
 
 	def __str__(self):
 		return self.title
+
 
 class StudentProjects(models.Model):
 	title = models.CharField(max_length=200, null=True)

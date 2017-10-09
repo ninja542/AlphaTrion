@@ -60,31 +60,29 @@ body {
 
 
 {% block content %}
-	{% if request.user.is_authenticated %}
 	{% if communityinst_list %}
 	{% for communities in communityinst_list %}
 	<article id='{{ communities.date }}' class='survey'> 
 
 		<div class='thumbnail'>
 			{% load static %} 
-			<a href='{% url 'community-review' communities.id request.user.id %}'>
+			<a href='{% url 'community-review' communities.id %}'>
 			<img class='thumbnail' src='{{ communities.photo }}'></a>
 		</div>
 
 		<div class='survey-title'>
 			<h1 class='date'>
-			<a class = 'entry-link' href="{% url 'community-review' communities.id request.user.id %}">{{ communities.date }}</a>
+			<a class = 'entry-link' href="{% url 'community-review' communities.id %}">{{ communities.date }}</a>
 			</h1>
 		</div>
 	</article>
 	{% endfor %}
+	
 	{% else %}
+	
 	<p>Surveys coming soon!</p>
+	
 	{% endif %}
-	{% else %}
-	<div>
-	<p style='position: absolute; display: block; padding-top: 100px'>You're not logged in! Log in <a href="{% url 'login' %}">here</a></p>
-	</div>
-	{% endif %}
+	
 
 {% endblock %}
