@@ -1,6 +1,32 @@
-# Finish work on Projects page # 
-# Begin to design for Commities Page # 
-# CSS fixes (make it look nice) #
+#10-13-17# 
+PROGRAMMING: 
+#### Add a way to change passwords. 
+
+### Finish non-manual addition of community 
+### Heroku Logs setup
+### Minutes Page 
+
+## Security Checkups 
+## Announcements Page 
+## Non-Manual Senate Projects (Perahps start with enrichment)? 
+
+# Update documentation
+
+STYLING: 
+### Definitly see what's happening on mobile and fix it ASAP 
+### Wider Width for the nav bar collapse 
+### Projects page not showing up on mobile and sometimes desktop 
+### Apply Senate-Projects Styling to Community and Possbily Senate-Members 
+
+## Tidy up login section 
+
+
+# Next Weekend #
+I'm imagining that our instant, non-email, communication has been setup; this is probably a good time to start planning a committees page.
+Also, community committee is probably going to want to use the website very soon, and by that I mean the survey is going to need a professional overall. 
+If the meeting to pass the website through the school does't happen by next week, then preparing for that is going to be of #### priority.
+
+
 
 # IN Community # 
 Finish Community Surveys - Add custom survey question ability 
