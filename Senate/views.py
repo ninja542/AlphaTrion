@@ -7,3 +7,9 @@ def senate_home(request):
 
 def senate_constitution(request):
 	return render(request, 'senate-constitution.html')
+
+def minutes(request):
+	return render(request, 'minutes.html')
+
+def minutes_specific(request, minutesid):
+	return render(request, 'minutes-specific.html')

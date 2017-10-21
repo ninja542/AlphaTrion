@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^s3direct/', include('s3direct.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^projects/', include('Project.urls')),
+    url(r'^announcements/', include('Announcements.urls'))
 
 ]

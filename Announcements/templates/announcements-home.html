@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}<title>Announcements</title>{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+function delete_handler(){
+	if(confirm("Are you sure you want to delete this announcement?")){
+		return true; 
+	}
+
+	else{
+		return false;
+		event.preventDefault(); 
+	}
+
+}
+
+</script>
+{% endblock %}
+
+{% load extras %}
+{% load static %}
+
+{% block content %}
+
+{% for announce in announcements %}
+	<article>
+		<h2 align='center' style='padding-top: 40px;'>{{ announce.occuring_date }}: {{ announce.title }}
+		{% if request.user|has_group:"Senators" %}
+		
+		<a onclick='return delete_handler();' href="{% url 'delete-announcement' announce.id %}">
+			<img style='width: 16px; height: 16px;' src='{% static 'temp1.png' %}'>
+		</a> 
+		</h2> 
+		
+
+
+		{% endif %}
+
+		<h3 align='center'>{{ announce.short_description }}</h3>
+	</article>
+{% endfor %}
+
+{% endblock %}

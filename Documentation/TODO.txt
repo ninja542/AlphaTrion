@@ -1,57 +1,18 @@
-#10-13-17# 
 PROGRAMMING: 
-#### Add a way to change passwords. 
-
-### Finish non-manual addition of community 
-### Heroku Logs setup
-### Minutes Page 
-
-## Security Checkups 
-## Announcements Page 
-## Non-Manual Senate Projects (Perahps start with enrichment)? 
-
-# Update documentation
+-4 Add a way to change passwords.
+-4 Finish non-manual addition of community 
+-4 Nav Bar unresponsive, at best, MOBILE WEBSITE  
+-3 Song Suggestions for Community 
+-3 Community overall suggestions page
+-3 Minutes Page 
+-2 Security Checkups  
+-2 Non-Manual Senate Projects (Perahps start with enrichment)? 
+-1 Update documentation
 
 STYLING: 
-### Definitly see what's happening on mobile and fix it ASAP 
-### Wider Width for the nav bar collapse 
-### Projects page not showing up on mobile and sometimes desktop 
-### Apply Senate-Projects Styling to Community and Possbily Senate-Members 
+-4 FORM FORMATTING
+-4 Projects page not showing up on mobile and sometimes desktop, MOBILE WEBSITE
+-4 Apply Senate-Projects Styling to Community and Possbily Senate-Members, MOBILE WEBSITE 
+-3 Note Senate specific complaints 
+-2 Tidy up login section 
 
-## Tidy up login section 
-
-
-# Next Weekend #
-I'm imagining that our instant, non-email, communication has been setup; this is probably a good time to start planning a committees page.
-Also, community committee is probably going to want to use the website very soon, and by that I mean the survey is going to need a professional overall. 
-If the meeting to pass the website through the school does't happen by next week, then preparing for that is going to be of #### priority.
-
-
-
-# IN Community # 
-Finish Community Surveys - Add custom survey question ability 
-Fix formatting on the pictures. 
-
-# Projects # 
-Finish Student projects and start on adding a method for students to actaully be able to add stuff 
-Work on upvote system in Student projects. 
-Add ability to ensure that forms can't be submitted twice.
-
-
-#IN community/survey_specific_result, community/views.py # 
-Add Overall Survey Data Analytics
-Just fix this mess. 
-
-# Commities #
-WHAT ARE COMMITTEES
-Student COMMITTEES? - Is this just projects? Did I make COMMITTEES but wrong? No. Projects are always one-shot. 
-Thanksgiving COMMITTEE makes more sense as a project instead of being part of spirit COMMITTEE (they are loosly connected).
-Halloween makes more sense under spirit COMMITTEE. (does it though?)
-Does Dance make more sense as a project? Possibly? I don't see its purpose as a COMMITTEE. It's not like there's much of a differnece, just that COMMITTEE have staying power. 
-Park is obviously a project. 
-Senate COMMITTEE? 
-Comitie suggestion?
-A page for every COMMITTEE? 
-Definitly a COMMITTEE model. 
-Do Commities need surveys? 
-Should there be a survey to figure out what I need in COMMITTEES? Probably. 

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+{% block mobile-meta %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block meta %}
+{% endblock %}
+
 {% block title %}
 <title>DHS Senate</title>
 {% endblock %}
-{% block script %}
+
+
+
+{% block analytics-script %}
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -16,6 +27,12 @@
 
 </script>
 {% endblock %}
+
+{% block script %}
+{% endblock %}
+
+
+
 {% block nav-bar-style %}
 
 <script type='text/javascript'>
@@ -118,7 +135,7 @@ html, body{
  }
 
 
-@media only screen and (max-width : 800px){
+@media only screen and (max-width : 1083px){
 	.menu-icon{
 		display: inline-block;
 	}
@@ -137,7 +154,8 @@ html, body{
 		border: 5px solid #444;
 		right: 0px;
 		top: 40px;
-		width: 50%;
+		width: 75%;
+		height: 100%;
 		border-radius: 4px 0 4px 4px; 
 	}
 

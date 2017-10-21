@@ -27,3 +27,8 @@ class Senator(models.Model):
 		
 	class Meta:
 		ordering = ["-grade", "name"]
+
+class Minutes(models.Model):
+	date = models.DateField()
+	
+	

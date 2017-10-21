@@ -14,46 +14,39 @@ body {
 
 .logo {
 	position: absolute;
-    top: 50%;
+    top: 41%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 50%;
+    height: 45%;
     width: auto;
 }
 
 .logo-handler { 
-	height: 100%;
+	height: 75%;
 	width: 100%;
 }
 
-#linker{ 
-	padding: 10px 10px 10px 10px;
-	font-size: 20px;
-	text-decoration: none;
-	color: #efc729;
-	background-color: #8f2837;
-	position: absolute;
+#social-buttons #container {
+	text-align: center;
 }
 
-.link-button-left{
-	top: 90%;
-	left: 25%;
-	transform: translate(-25%, -90%);
+#social-buttons #container ul li {
+	display:inline-block;
+	list-style-type: none;
+	width: 25%;
 }
 
-.link-button-lower{
-
-	top: 90%;
-	left: 50%;
-	transform: translate(-50%, -90%);
+#linker {
 }
 
-.link-button-right{
-	top: 90%;
-	left: 75%;
-	transform: translate(-75%, -90%);
-}
+#lister {
+	padding: 0;
 
+}
+.button {
+	width: 15%;
+	height: 15%;
+}
 
 </style>
 
@@ -64,9 +57,16 @@ body {
 <div class='logo-handler'>
 	<div class='logo-div'>
 		<img class='logo' src='{% static 'Home/logo.jpg' %}'>
-			<a href='https://dhsnews.net' class='link-button-left' id='linker'>DHS NEWS</a>
-			<a href='http://dhs.newton-conover.org' class='link-button-lower' id='linker'>DHS WEBSITE</a>
-			<a href='https://www.facebook.com/groups/700578770033057/' class='link-button-right' id='linker'>DHS STUDENTS</a>
+	</div>
+</div>
+
+<div style='width:100%;' id='social-buttons'>
+	<div style='width:100%;' id='container'>
+		<ul id='lister'>
+			<li><a href='https://dhsnews.net' id='linker'><img class='button' src='{% static 'Home/dhsnews-512.png' %}'></a></li>
+			<li><a href='http://dhs.newton-conover.org' id='linker'><img class='button' src='{% static 'Home/dhswebsite-512.png' %}'></a></li>
+			<li><a href='https://www.facebook.com/groups/700578770033057/' id='linker'><img class='button' src='{% static 'Home/dhsstudents-512.png' %}'></a></li>
+		</ul>
 	</div>
 </div>
 

@@ -1,0 +1,29 @@
+{% extends 'base-nonav.html' %}
+{% block title %}<title>Add Announcement</title>{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type='text/javascript'>
+$(function($){
+  	$(".datepicker").datepicker({
+  		changeMonth: true,
+  		changeYear: true, 
+  		dateFormat: 'yy-mm-dd',
+  	});
+ });
+</script>
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+	{% csrf_token %}
+	<table>
+		<tr>
+			{{ form }}
+		</tr>
+	</table>
+<input type='submit' value='Submit'>
+</form>
+{% endblock %}
