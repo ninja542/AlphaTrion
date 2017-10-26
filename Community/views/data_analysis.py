@@ -1,21 +1,21 @@
 from __future__ import division	
-import numpy as np
-from django.shortcuts import render
-from django.views import generic 	
-from django.urls import reverse
+from Community.forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
+from Community.models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings, Game
+from bokeh.core.properties import Instance, String 
+from bokeh.embed import components
+from bokeh.io import show
+from bokeh.models import ColumnDataSource, LayoutDOM
+from bokeh.plotting import figure, output_file, show
+from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
+from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
-from django.contrib.auth.models import Group
-from bokeh.plotting import figure, output_file, show
-from bokeh.embed import components
-from bokeh.core.properties import Instance, String 
-from bokeh.models import ColumnDataSource, LayoutDOM
-from bokeh.io import show
-from Community.models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings, Game
-from Community.forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
+from django.shortcuts import render
+from django.urls import reverse
+from django.views import generic 	
+import numpy as np
 
 JS_CODE = """ 
 	# Taken from https://bokeh.pydata.org/en/latest/docs/user_guide/extensions_gallery/wrapping.html

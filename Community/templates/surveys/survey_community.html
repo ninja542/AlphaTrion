@@ -32,7 +32,7 @@ li {
 	<img style="height:1em;width:1em;" src="{% static "Community/icons.png" %}" alt="info">
 
 	</label>
-	{% load extras %}
+	{% load dict %}
 	{% with x=game_form_dict|key:games.name %}
 	{{ x }}
 	{% endwith %}

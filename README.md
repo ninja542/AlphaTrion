@@ -4,22 +4,23 @@ The Senate Website - AlphaTrion - is meant to be a tool for the Discovery High S
 
 <h1 align='center'>Installation</h1>
 
-##### Prerequisites
+###### Prerequisites
+---
 ```
 Python - 3.5.x (or newer)
 Git - 2.13 (or newer)
 ```
 
-##### Clone Repository
-
+###### Clone Repository
+---
 Open a command window in the location you would like to store the files and type in the following command:
 
 ```bash
 git clone https://www.github.com/byrdofafeather/alphatrion
 ```
 
-##### Installing Requirements
-
+###### Installing Requirements
+---
 From the same directory type in: 
 
 ```bash
@@ -38,7 +39,8 @@ if on linux, type:
 sudo pip install -r requirements.txt 
 ```
 
-##### Setting up a Local Database
+###### Setting up a Local Database
+---
 In the same directory (/alphatrion/) run the following command to setup a local database:
 
 ```py
@@ -47,9 +49,8 @@ python manage.py migrate
 
 ```
 
-##### Fix Secret Key
-
-
+###### Fix Secret Key
+---
 ```
 Generate a secret key from https://www.miniwebtool.com/django-secret-key-generator/
 
@@ -67,8 +68,8 @@ With
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'Insert Generated secret key here')
 ```
 
-##### Fix Settings
-
+###### Fix Settings
+---
 Change:
 
 ```py
@@ -146,7 +147,8 @@ To:
 In models that require photos, S3DirectField must be changed to a file field as it requires https to work. 
 ```
 
-##### Create SuperUser
+###### Create SuperUser
+---
 In the /alphatrion/ directory, open a command window and type the following command:
 
 ```bash
@@ -155,7 +157,8 @@ python manage.py createsuperuser
 
 You will be prompted for user information, fill this out. This is the login for the /admin page
 
-##### Verify Launch 
+###### Verify Launch 
+---
 Finally, run 
 
 ```bash

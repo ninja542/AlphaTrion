@@ -1,18 +1,19 @@
 PROGRAMMING: 
 -4 Add a way to change passwords.
--4 Finish non-manual addition of community 
+-4 Finish non-manual addition of community (10-27) 
 -4 Nav Bar unresponsive, at best, MOBILE WEBSITE  
+-4 Custom Survey for Community (10-27)
 -3 Song Suggestions for Community 
--3 Community overall suggestions page
--3 Minutes Page 
+-3 Community overall suggestions page 
+-3 Minutes Page (10-27)
 -2 Security Checkups  
--2 Non-Manual Senate Projects (Perahps start with enrichment)? 
+-2 Non-Manual Senate Projects
 -1 Update documentation
 
 STYLING: 
--4 FORM FORMATTING
+-4 FORM FORMATTING (10-27)
 -4 Projects page not showing up on mobile and sometimes desktop, MOBILE WEBSITE
--4 Apply Senate-Projects Styling to Community and Possbily Senate-Members, MOBILE WEBSITE 
+-4 Apply Senate-Projects Styling to Community and Possbily Senate-Members, MOBILE WEBITE 
 -3 Note Senate specific complaints 
 -2 Tidy up login section 
 

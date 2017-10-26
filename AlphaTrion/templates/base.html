@@ -134,6 +134,10 @@ html, body{
  	background: black center;
  }
 
+ #Title {
+ 	display: none
+ }
+
 
 @media only screen and (max-width : 1083px){
 	.menu-icon{
@@ -181,6 +185,13 @@ html, body{
 		padding: 10px 0;
 		margin: 0;
 	}
+	#Title{
+		font-size: 2em; 
+		float: left;
+		color: #efc729;
+		display: inline-block;
+		width: (100% - 40px);
+	}
 }
 
 
@@ -195,6 +206,7 @@ html, body{
 {% block nav-bar %}
 <header class="oheader">
 <nav onclick='handlerfornavbar()'>
+<b id='Title'>Discovery Senate</b>
 <a href="#" class='menu-icon'></a>
 	<ul class='navbar' id='navbar'>
 		{% if request.path == '/' or request.path == '/home/' %}
