@@ -2,6 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Questions, CustomSurvey, SurveyQuestions, AnswerInt, AnswerText, SenateProjects
 
+
+# https://github.com/jessykate/django-survey
 class CustomSurveyForm(forms.ModelForm):
 	class Meta:
 		model = CustomSurvey

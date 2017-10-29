@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base-nonav.html' %}
 
 
 {% block title %}<title>Reivew for {{ community.date }}</title>{% endblock %}
@@ -17,7 +17,6 @@ li {
 {% endblock %}
 
 {% block content %}
-{% block nav-bar %}{% endblock %}
 {% if request.user.id == user.id %}
 	
 	<form method="POST">
@@ -47,7 +46,7 @@ li {
 	
 	<table>
 		<tr>
-			<label>Please rate what you thought of this community's pacing</label>
+			<p>Please rate what you thought of this community's pacing</p>
 			{{ pacing_section }}
 		</tr>
 	</table>
@@ -55,7 +54,7 @@ li {
 
 	<table>
 		<tr>
-			<label>To get a general sense of how community went, please answer the following questions:</label>
+			<p>To get a general sense of how community went, please answer the following questions:</p>
 			{{ extra_ratings }}
 		</tr>
 	</table>

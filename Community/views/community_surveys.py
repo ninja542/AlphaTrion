@@ -84,6 +84,7 @@ def review_community_instance(request, communityid):
 			return HttpResponseRedirect(reverse('community-home', current_app='Community'))
 
 	else:
+		if CommunityPacingRatings.objects.filter(community=community, user=user): pass
 		game_form_dict = dict()
 		for games in community.occuring_games.all():
 			game_form_dict[games.name] = CommunityGameRatingsForm(prefix='{}'.format(games.name))
