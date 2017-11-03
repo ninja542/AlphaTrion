@@ -96,50 +96,90 @@ class Surface3d(LayoutDOM):
 	color = String
 
 
-# Senator Only - List of communities to view data from page. 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def communityinstviewresults(request):
+	"""
+	Displays a list of all communities. 
+
+	**Context**
+	''communityinst''
+		All Community objects
+
+	**Template:**
+	:template:'data_analysis/survey_result_list.html'
+	"""
+
 	communities = CommunityInst.objects.all()
 	return render(request, 'data_analysis/survey_result_list.html', {'communityinst': communities})
 
 
-# Senate only - Community Survey Results for a specfiic Commnity page
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def survey_results(request, communityid):
+	"""
+	Builds data structures to display for a individual community 
+
+	**Context**
+	''community''
+		Community object
+	
+	''mean''
+		Mean of all game ratings for all games in Community object 
+	
+	''game_ratings_dict'' 
+		a list of all games formated {index, GameRatingObject} 
+	
+	''rating_correlation_list'' 
+		a list of all games ratings with 'want to see again'
+	
+	''ramean'' 
+		mean of rating_correlation_list
+
+	**Template:**
+	:template:'data_analysis/survey_specific_result.html'
+
+	"""
 
 	community = get_object_or_404(CommunityInst, pk=communityid)	
 	game_rating_dict = dict()
-	counter = 0
-	index = 0
-	total_sum = 0 
+	index = 0 
 	for games in CommunityGames.objects.filter(communityinst=community):
 		for instances in CommunityGameRatings.objects.filter(games=games):
-			game_rating_dict[counter] = instances 
-			total_sum += instances.game_rating
-			counter += 1 
-	mean = total_sum/counter 
-	z = []
-	x = []
-	y = []
-	for games in game_rating_dict.values():
-		z.append(games.game_rating)
-	for games in game_rating_dict.values():
-		x.append(games.games.game.number_of_participants)
-	for games in game_rating_dict.values():
-		y.append(games.games.game.estimated_length)
-	value = z
-	source = ColumnDataSource(data=dict(x=x, y=y, z=value, color=value))
-	surface = Surface3d(x="x", y="y", z="z", color="color", data_source=source)
-	script, div = components(surface)
+			game_rating_dict[index] = instances 
+			index += 1 
 
-	return render(request, 'data_analysis/survey_specific_result.html', {'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 'script': script, 'div': div})
+	mean = sum(game_rating_dict.values.game_rating)/ ( len(game_rating_dict.values) - 1 )  	
 
-# Senate Only - Overall survey results for every community. 
+	rating_again_list = [r
+	 for r,a in 
+	 zip((game_rating_dict.values.game_rating, game_rating_dict.values.like_to_see_again)) 
+	 if a == 'Yes']
+	ramean = sum(rating_again_list) / ( len(rating_again_list) -1 ) 
+
+
+	return render(request, 'data_analysis/survey_specific_result.html', 
+		{'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 
+		'rating_correlation_list': rating_again_list, 'ramean': ramean})
+
+
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
 def overall_survey_results(request):
+	"""
+	Builds data structures to display for all communities  
+
+	**Context**
+	''div''
+		div of 3D Bokeh/Vis.js graph
+	
+	''script''
+		Script of 3D Bokeh/Vis.js graph
+
+	**Template:**
+	:template:'data_analysis/survey_overall_results.html'
+	"""
+
 	z = [] 
 	x = [] 
 	y = [] 

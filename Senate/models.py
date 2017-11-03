@@ -3,6 +3,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from s3direct.fields import S3DirectField
 
 class Senator(models.Model):
+	"""
+	Model to store a senator
+	"""
 	GRADE_LEVEL_CHOICES = (
 		(9, '9'),
 		(10, '10'),

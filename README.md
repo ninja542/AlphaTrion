@@ -1,6 +1,6 @@
 <h1 align='center'>AlphaTrion</h1>
 
-The Senate Website - AlphaTrion - is meant to be a tool for the Discovery High School student senate to preform data analytics on a school-wide scale. The website is to serve more than a single senate with an end goal of iteratively improving senate functions as time passes. The website is built to be modular without programming experience; senate members should be able to collect new data without having previous programming knowledge. With that in mind, the website is also to serve the purpose of data analytics, seamlessly visualizing data through the use of external libraries.
+The Senate Website - AlphaTrion - is meant to be a template for a student-led website for student governments. It is meant to preform data analytics on a school-wide scale. The website is to serve more than a single senate with an end goal of iteratively improving senate functions as time passes. The website is built to be modular without programming experience; senate members should be able to collect new data without having previous programming knowledge. With that in mind, the website is also to serve the purpose of data analytics, seamlessly visualizing data through the use of external libraries.
 
 <h1 align='center'>Installation</h1>
 
@@ -181,7 +181,7 @@ It will start the server and give you a link with a few numbers. Copy this into 
 <h1 align='center'>Authors</h1>
 
  * 2017-2018 School Year: 
- 	* **Matthew Byrd** - *Initial Work* - [ByrdOfAFeather](https://www.github.com/byrdofafeather)
+    * **Matthew Byrd** - *Initial Work* - [ByrdOfAFeather](https://www.github.com/byrdofafeather)
 
 <h1 align='center'>License</h1>
 

@@ -6,31 +6,42 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{mean}}</h1>
+<h1> Average Game Rating: {{mean}}</h1>
 <br>
 
-
-{{ div | safe }}
-{{ script | safe }}
-
 <div class="individual-ratings"> 
+<div id='comments'>
+	<h5> Individual Ratings </h5>
+	{% for comments in game_ratings_dict.values %}
+	<p id='user-rating'> User Rating: { comments.game_rating } </p>
+	<p id='user-comment'>"{{ comments.game_comments }}"</p>
+	<p id='user-see-again'> - Would like to see again: {{ comments.like_to_see_again }}</p>
+	{% endfor %}
+</div>
+
+<div id='rating-correlations'>
+	<div id='ltsa-correlation'> <!-- ltsa (Like to see again) -->
+		<h5> Ratings with those who would like to see the game again. </h5>
+		{% for seeagain in rating_correlation_list %}
+		<p id='user-rating'> Rating: {{ seeagain }}</p>
+		{% endfor %}
+		<p> Mean of ratings for people who would like to see the game again : {{ ramean }}</p>
+</div>
+
+<div id='rating-grade-level'>
+	<!-- coming soon --> 
+</div>
+	
 
 
-<form action='{% url 'community-results-specific' community.id %}' method='get'>
-{% csrf_token %}
-<label for='games'>Game</label>
-<select name='games'>
-<option selected value=''>Chooose a option!</option>
-{% for instances in game_ratings_dict.values %}
-<option value={{ instances.games.game.id }} />{{ instances.games.game.name }}</option>
-{% endfor %}
-{% load extras %} 
-<input type='submit' name='gameu' value='Filter'/>
-</form> 
 
+<!--
 {% for instances in game_ratings_dict.values %}
 	<h3>{{ instances.games.game.name }}</h3>
 	<p> {{ instances.game_rating }}</p>
 {% endfor %}
+-->
+
+
 </div>
 {% endblock %}
