@@ -1,47 +1,124 @@
 {% extends 'base.html' %}
 
-{% block style %}
-<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css" type="text/css" />
+{% block script %}
 <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type='text/javascript'>
+$(function(){
+	$('#comments').draggable({cancel: '.text'}).resizable();
+});
+</script>
+
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.css" type="text/css" />
+
+<style type='text/css'>
+#host-score-link{ 
+	text-decoration: none;
+}
+
+#indivratet{
+	border-collapse: collapse;
+}
+
+td, th{
+	border: 1px solid #dddddd;
+}
+
+tr:nth-child(even){
+	background-color: #dddddd
+}
+
+#comments{
+	float: right;
+	overflow: scroll;
+	width: 500px;
+	height: 500px;
+	max-width: 1020px;
+}
+
+#warning{
+	display: none;
+}
+
+#main{
+	padding-top: 40px;
+}
+
+@media only screen and (orientation: portrait) {
+	#main{
+		display: none;
+	}
+
+	#warning{
+		padding-top: 40px;
+		display: inline-block;
+	}
+
+
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
-<h1> Average Game Rating: {{mean}}</h1>
-<br>
+<div id='warning'>
+	<h1>Please use Landscape mode!</h1>
+</div>
 
-<div class="individual-ratings"> 
+<div id='main'>
+<h4 id='overallmean'> Average Game Rating: {{mean}}</h4>
+
+<div id="individual-game-ratings"> 
 <div id='comments'>
-	<h5> Individual Ratings </h5>
+	<!-- put me in a table -->
+	<h5> Individual Game Ratings (Move me!)</h5>
+	<table id='indivratet'>
+		<tr>
+			<th class='text'>Rating</th>
+			<th class='text'>Comment</th>
+			<th class='text'>Would Like to see again</th>
+		</tr>
 	{% for comments in game_ratings_dict.values %}
-	<p id='user-rating'> User Rating: { comments.game_rating } </p>
-	<p id='user-comment'>"{{ comments.game_comments }}"</p>
-	<p id='user-see-again'> - Would like to see again: {{ comments.like_to_see_again }}</p>
+		<tr>
+			<td><p class='text' id='user-game-rating'> {{ comments.game_rating }} </p></td>
+			<td><p class='text' id='user-game-comment'>"{{ comments.game_comments }}"</p></td>
+			<td><p class='text' id='user-game-see-again'>{{ comments.like_to_see_again }}</p></td>
+		</tr>
 	{% endfor %}
+	</table>
+
 </div>
 
 <div id='rating-correlations'>
 	<div id='ltsa-correlation'> <!-- ltsa (Like to see again) -->
 		<h5> Ratings with those who would like to see the game again. </h5>
 		{% for seeagain in rating_correlation_list %}
-		<p id='user-rating'> Rating: {{ seeagain }}</p>
+		<p id='user-rating'> Rating: {{ seeagain.game_rating }}</p>
 		{% endfor %}
 		<p> Mean of ratings for people who would like to see the game again : {{ ramean }}</p>
+	</div>
+
+	<div id='holistic-review'>
+		<p>Host Score for this Community<a id='host-score-link' href="{% url 'equation-documentation' %}"><sup>?</sup></a>: {{ host_score }}</p>
+
+	</div>
+
 </div>
 
 <div id='rating-grade-level'>
 	<!-- coming soon --> 
 </div>
-	
 
+<div id='overall-ratings'>
+	<table>
+		<tr>
+</div>
 
-
-<!--
-{% for instances in game_ratings_dict.values %}
-	<h3>{{ instances.games.game.name }}</h3>
-	<p> {{ instances.game_rating }}</p>
-{% endfor %}
--->
-
-
+</div>
 </div>
 {% endblock %}

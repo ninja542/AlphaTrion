@@ -1,4 +1,3 @@
-from __future__ import division	
 from Community.forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
 from Community.models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings, Game
 from bokeh.core.properties import Instance, String 
@@ -9,13 +8,10 @@ from bokeh.plotting import figure, output_file, show
 from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.urls import reverse
-from django.views import generic 	
-import numpy as np
+from Community.extras.math_models import host_score, game_likeability
+from django.core.mail import send_mail
 
 JS_CODE = """ 
 	# Taken from https://bokeh.pydata.org/en/latest/docs/user_guide/extensions_gallery/wrapping.html
@@ -129,12 +125,10 @@ def survey_results(request, communityid):
 	
 	''game_ratings_dict'' 
 		a list of all games formated {index, GameRatingObject} 
+
+	''hs''
+		Host score
 	
-	''rating_correlation_list'' 
-		a list of all games ratings with 'want to see again'
-	
-	''ramean'' 
-		mean of rating_correlation_list
 
 	**Template:**
 	:template:'data_analysis/survey_specific_result.html'
@@ -143,24 +137,39 @@ def survey_results(request, communityid):
 
 	community = get_object_or_404(CommunityInst, pk=communityid)	
 	game_rating_dict = dict()
+	game_rating_list = []
 	index = 0 
 	for games in CommunityGames.objects.filter(communityinst=community):
 		for instances in CommunityGameRatings.objects.filter(games=games):
+			game_rating_list.append(instances)
 			game_rating_dict[index] = instances 
 			index += 1 
+	mean = round(sum([r.game_rating for r in list(game_rating_dict.values())])/ ( len(game_rating_dict) ), 2)  	
+	extras_list = [r
+	 for r in CommunityExtraRatings.objects.filter(community=community)]
+	
+	pacing_rating_text = [p.pacing_rating 
+	 for p in CommunityPacingRatings.objects.filter(community=community)]	
 
-	mean = sum(game_rating_dict.values.game_rating)/ ( len(game_rating_dict.values) - 1 )  	
+	# PRIMITIVE ENCODER, TO BE REPLACED WITH SKLEARN AFTER MINICONDA EXPIERMENTATION
+	pacing_rating_numeric = []
+	for values in pacing_rating_text:
+		if values == 'v':
+			pacing_rating_numeric.append(0)
+		elif values == 'g':
+			pacing_rating_numeric.append(1)
+		elif values == 'd':
+			pacing_rating_numeric.append(2)
+		elif values == 'b':
+			pacing_rating_numeric.append(3)
+		elif values == 'h':
+			pacing_rating_numeric.append(4)
 
-	rating_again_list = [r
-	 for r,a in 
-	 zip((game_rating_dict.values.game_rating, game_rating_dict.values.like_to_see_again)) 
-	 if a == 'Yes']
-	ramean = sum(rating_again_list) / ( len(rating_again_list) -1 ) 
-
+	hs = host_score([r.overall_rating for r in extras_list], pacing_rating_numeric)
 
 	return render(request, 'data_analysis/survey_specific_result.html', 
 		{'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 
-		'rating_correlation_list': rating_again_list, 'ramean': ramean})
+		'host_score': hs})
 
 
 @login_required
@@ -196,3 +205,8 @@ def overall_survey_results(request):
 	script, div = components(surface)
 
 	return render(request, 'data_analysis/survey_overall_results.html', {'div': div, 'script': script})
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='/accounts/login')
+def equation_documentation(request):
+	return render(request, 'data_analysis/equation_documentation.html')

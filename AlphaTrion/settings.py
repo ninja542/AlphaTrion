@@ -165,6 +165,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Email Settings
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587 
+EMAIL_HOST_USER = 'apikey' 
+EMAIL_HOST_PASSWORD = str(os.environ.get('EMAIL_API_KEY', ''))
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Teletrann I <teletraani@dhssenate.net>'
 
 # Other Settings 
 SECURE_CONTENT_TYPE_NOSNIFF = True

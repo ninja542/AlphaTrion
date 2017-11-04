@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}<title>Equation Help</title>{% endblock %}
+
+
+{% block style %}
+<style type='text/css'>
+#hostscore{
+	text-align: center;
+	padding-top: 44px;
+}
+#hostscore-explanation{
+	font-size: 1.2em;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div id='hostscore'>
+	<img id='hostscore-equation' src="{% static 'Equations/hostscore.gif' %}">
+	<p id='hostscore-explanation'>The host score is only a way to describe the data - it does not have an exact real world model and only serves as a value to maximize.<br><br>
+	Don’t worry: all this equation does it take the average overall rating and divides it by the pacing rating to get the host score. The host score is meant to be a mathematical representation of how a host preformed. The average game rating is not included due to that fact that the host is not directly in control of the game mechanics, therefore, they can’t be responsible for the rating. The reason it takes a overall rating and divides it by the pacing rating is that pacing rating is encoded, meaning it takes text and makes it numbers. <br>
+
+	So Very Good is 0, good is 1, decent is 2, bad is 3, and horrible is 4. Therefore, if the overall rating average was high, say due to a random event, or an out-of-the-ordinary thing, but the rest was badly paced, the Host score will be sensitive to this. This equation encourage a high overall rating and a low encoded average for the pacing rating (a high pacing rating).<br>
+
+ 	One problem with this equation is that if the pacing rating average is 0, then it will result in undefined.</p>
+ </div>
+
+
+
+{% endblock %}
