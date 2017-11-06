@@ -2,6 +2,11 @@
 
 
 {% block title %}<title>Reivew for {{ community.date }}</title>{% endblock %}
+
+{% block mobile-meta %}
+<meta name="viewport" content="width=device-width, initial-scale=.7">
+{% endblock %}
+
 {% block style %}
 <style>
 
@@ -44,14 +49,6 @@ li {
 	
 	<br>
 	
-	<table>
-		<tr>
-			<p>Please rate what you thought of this community's pacing</p>
-			{{ pacing_section }}
-		</tr>
-	</table>
-	<br>
-
 	<table>
 		<tr>
 			<p>To get a general sense of how community went, please answer the following questions:</p>

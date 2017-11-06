@@ -1,5 +1,5 @@
-from Community.forms import CommunityGameRatingsForm, CommunityPacingRatingsForm, CommunityExtraRatingsForm
-from Community.models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityPacingRatings, CommunityExtraRatings, Game
+from Community.forms import CommunityGameRatingsForm, CommunityExtraRatingsForm
+from Community.models import CommunityInst, CommunityGameRatings, CommunityGames, CommunityExtraRatings, Game
 from bokeh.core.properties import Instance, String 
 from bokeh.embed import components
 from bokeh.io import show
@@ -33,39 +33,39 @@ JS_CODE = """
 	  yLabel: 'Length Of Game'
 	  zLabel: 'Overall Rating'
 	  cameraPosition:
-	    horizontal: -0.35
-	    vertical: 0.22
-	    distance: 1.8
+		horizontal: -0.35
+		vertical: 0.22
+		distance: 1.8
 
 	export class Surface3dView extends LayoutDOMView
 	  initialize: (options) ->
-	    super(options)
+		super(options)
 
-	    url = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"
+		url = "https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"
 
-	    script = document.createElement('script')
-	    script.src = url
-	    script.async = false
-	    script.onreadystatechange = script.onload = () => @_init()
-	    document.querySelector("head").appendChild(script)
+		script = document.createElement('script')
+		script.src = url
+		script.async = false
+		script.onreadystatechange = script.onload = () => @_init()
+		document.querySelector("head").appendChild(script)
 
 	  _init: () ->
-	    @_graph = new vis.Graph3d(@el, @get_data(), OPTIONS)
-	    @connect(@model.data_source.change, () =>
-	        @_graph.setData(@get_data())
-	    )
+		@_graph = new vis.Graph3d(@el, @get_data(), OPTIONS)
+		@connect(@model.data_source.change, () =>
+			@_graph.setData(@get_data())
+		)
 
 	  get_data: () ->
-	    data = new vis.DataSet()
-	    source = @model.data_source
-	    for i in [0...source.get_length()]
-	      data.add({
-	        x:     source.get_column(@model.x)[i]
-	        y:     source.get_column(@model.y)[i]
-	        z:     source.get_column(@model.z)[i]
-	        style: source.get_column(@model.color)[i]
-	      })
-	    return data
+		data = new vis.DataSet()
+		source = @model.data_source
+		for i in [0...source.get_length()]
+		  data.add({
+			x:     source.get_column(@model.x)[i]
+			y:     source.get_column(@model.y)[i]
+			z:     source.get_column(@model.z)[i]
+			style: source.get_column(@model.color)[i]
+		  })
+		return data
 
 
 	export class Surface3d extends LayoutDOM
@@ -74,11 +74,11 @@ JS_CODE = """
 
 
 	  @define {
-	    x:           [ p.String           ]
-	    y:           [ p.String           ]
-	    z:           [ p.String           ]
-	    color:       [ p.String           ]
-	    data_source: [ p.Instance         ]
+		x:           [ p.String           ]
+		y:           [ p.String           ]
+		z:           [ p.String           ]
+		color:       [ p.String           ]
+		data_source: [ p.Instance         ]
 	  }
 	"""
 
@@ -118,7 +118,7 @@ def survey_results(request, communityid):
 
 	**Context**
 	''community''
-		Community object
+		Communityinst object
 	
 	''mean''
 		Mean of all game ratings for all games in Community object 
@@ -149,7 +149,7 @@ def survey_results(request, communityid):
 	 for r in CommunityExtraRatings.objects.filter(community=community)]
 	
 	pacing_rating_text = [p.pacing_rating 
-	 for p in CommunityPacingRatings.objects.filter(community=community)]	
+	 for p in CommunityExtraRatings.objects.filter(community=community)]	
 
 	# PRIMITIVE ENCODER, TO BE REPLACED WITH SKLEARN AFTER MINICONDA EXPIERMENTATION
 	pacing_rating_numeric = []

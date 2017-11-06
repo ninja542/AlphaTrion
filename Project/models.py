@@ -8,6 +8,9 @@ def get_first_name(self):
 User.add_to_class("__str__", get_first_name)
 
 class Questions(models.Model):
+	"""
+	Represents a single question
+	"""
 	# Based on https://github.com/jessykate/django-survey/blob/master/survey/models.py
 	TEXT = 'TEXT'
 	INTEGER = 'INTEGER'
@@ -30,6 +33,11 @@ class Questions(models.Model):
 
 
 class CustomSurvey(models.Model):
+	"""
+	Represents a single Survey,
+	links to :model:'Project.Questions'
+	links to :model:'auth.User'
+	"""
 	title = models.CharField(max_length=150)
 	date = models.DateField()
 	author = models.ForeignKey(User)
@@ -40,6 +48,11 @@ class CustomSurvey(models.Model):
 
 
 class SurveyQuestions(models.Model):
+	"""
+	Represents connection between a survey and a question,
+	links to :model:'Project.Questions'
+	links to :model:'Project.CustomSurvey'
+	"""
 	survey = models.ForeignKey(CustomSurvey, null=True)
 	question = models.ForeignKey(Questions)
 
@@ -51,6 +64,11 @@ class SurveyQuestions(models.Model):
 
 
 class SurveyAnswers(models.Model):
+	"""
+	Represents connection between a survey and question and abstract for answer,
+	links to :model:'Project.Questions'
+	links to :model:'Project.CustomSurvey'
+	"""
 	survey = models.ForeignKey(CustomSurvey, null=True)
 	question = models.ForeignKey(Questions)
 
@@ -59,6 +77,12 @@ class SurveyAnswers(models.Model):
 
 
 class AnswerInt(SurveyAnswers):
+	"""
+	Represents connection between a survey & question & user
+	links to :model:'Project.Questions'
+	links to :model:'Project.CustomSurvey'
+	links to :model:'auth.User'
+	"""
 	user = models.ForeignKey(User)
 	answer = models.IntegerField()
 
@@ -71,6 +95,12 @@ class AnswerInt(SurveyAnswers):
 
 
 class AnswerText(SurveyAnswers):
+	"""
+	Represents connection between a survey & question & user
+	links to :model:'Project.Questions'
+	links to :model:'Project.CustomSurvey'
+	links to :model:'auth.User'
+	"""
 	user = models.ForeignKey(User)
 	answer = models.TextField()
 
@@ -83,6 +113,11 @@ class AnswerText(SurveyAnswers):
 
 
 class SenateProjects(models.Model):
+	"""
+	Represents a Senate project (and a connection to a survey)
+	links to :model:'Project.CustomSurvey'
+	links to :model:'auth.User'
+	"""
 	title = models.CharField(max_length=200, null=True)
 	author = models.ForeignKey(User, limit_choices_to={'groups__name': 'Senators'})
 	date = models.DateField()
@@ -99,6 +134,11 @@ class SenateProjects(models.Model):
 
 
 class StudentProjects(models.Model):
+	"""
+	Represents a Student project (and a connection to a survey)
+	links to :model:'Project.CustomSurvey'
+	links to :model:'auth.User'
+	"""
 	title = models.CharField(max_length=200, null=True)
 	author = models.ForeignKey(User, limit_choices_to={'groups__name': 'Students'})
 	date = models.DateField()

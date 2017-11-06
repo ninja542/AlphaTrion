@@ -1,11 +1,9 @@
 ============= OVERALL ===============
 PROGRAMMING - Overall: 
--4 Add a way to change passwords.
 -4 Add grade levels to database.
 -4 Community overall suggestions page 
--4 Minutes Page (10-27)
--4 Finish non-manual addition of community (10-27) 
--4 Custom Survey for Community (10-27)
+-4 Finish non-manual addition of community (10-27) <-- RIP 
+-4 Custom Survey for Community (10-27) <-- RIP
 -3 Add Website Survey (Meta)
 -3 Song Suggestions for Community 
 -2 Security Checkups  
@@ -15,6 +13,7 @@ PROGRAMMING - Overall:
 
 STYLING - Overall: 
 -4 Note Student-Body Specific Complaints (About Website)
+-4 Minutes Page Mobile
 -3 Apply Senate-Projects Styling to Community and Possbily Senate-Members, MOBILE WEBITE 
 -2 Tidy up login section 
 
@@ -22,10 +21,11 @@ STYLING - Overall:
 ============= INDIVIDUAL PAGES ============
 COMMUNITY:
 -4 Split Community Survey view function into smaller pieces
--3 Finish docstrings on views & models 
 -2 Add a option to do ranges of dates in overall results 
 
 Project:
+-4 Finish documentation on forms and views
+
 Announcements:
 Senate:
 Home: 

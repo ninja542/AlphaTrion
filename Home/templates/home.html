@@ -34,12 +34,14 @@ body {
 	display:inline-block;
 	list-style-type: none;
 	width: 25%;
+	min-width: 350px;
 }
 
 #linker {
 }
 
 #lister {
+	height: 60%;
 	padding: 0;
 
 }
@@ -64,10 +66,11 @@ body {
 	<div style='width:100%;' id='container'>
 		<ul id='lister'>
 			<li><a href='https://dhsnews.net' id='linker'><img class='button' src='{% static 'Home/dhsnews-512.png' %}'></a></li>
-			<li><a href='http://dhs.newton-conover.org' id='linker'><img class='button' src='{% static 'Home/dhswebsite-512.png' %}'></a></li>
+			<li><a href='https://github.com/ByrdOfAFeather/AlphaTrion' id='linker'><img class='button' src='{% static 'Home/dhswebsite-512.png' %}'></a></li>
 			<li><a href='https://www.facebook.com/groups/700578770033057/' id='linker'><img class='button' src='{% static 'Home/dhsstudents-512.png' %}'></a></li>
 		</ul>
 	</div>
 </div>
+
 
 {% endblock %}

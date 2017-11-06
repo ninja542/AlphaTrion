@@ -2,8 +2,9 @@
 
 {% block script %}
 <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
 <script type='text/javascript'>
 $(function(){
 	$('#comments').draggable({cancel: '.text'}).resizable();
@@ -95,13 +96,6 @@ tr:nth-child(even){
 </div>
 
 <div id='rating-correlations'>
-	<div id='ltsa-correlation'> <!-- ltsa (Like to see again) -->
-		<h5> Ratings with those who would like to see the game again. </h5>
-		{% for seeagain in rating_correlation_list %}
-		<p id='user-rating'> Rating: {{ seeagain.game_rating }}</p>
-		{% endfor %}
-		<p> Mean of ratings for people who would like to see the game again : {{ ramean }}</p>
-	</div>
 
 	<div id='holistic-review'>
 		<p>Host Score for this Community<a id='host-score-link' href="{% url 'equation-documentation' %}"><sup>?</sup></a>: {{ host_score }}</p>
