@@ -93,7 +93,7 @@ html, body{
 	padding: 0; 
 }
 
-.navbar > a {
+.navbar > div {
 	flex-grow: 1;
 	text-align: center;
 	padding: 16px;
@@ -215,37 +215,37 @@ html, body{
 <nav onclick='handlerfornavbar()'>
 <b id='Title'>Discovery Senate</b>
 <a href="#" class='menu-icon'></a>
-	<ul class='navbar' id='navbar'>
+	<div class='navbar' id='navbar'>
 		{% if request.path == '/' or request.path == '/home/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></li>
+		<div class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></div>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></li>
+		<div class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></div>
 		{% endif %}
 	
 		{% if request.path == '/community/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'community-home' %}'>Community</a></li>
+		<div class='nav-item'><a class = 'link-selected' href='{% url 'community-home' %}'>Community</a></div>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href='{% url 'community-home' %}'>Community</a></li>
+		<div class='nav-item'><a class = 'link' href='{% url 'community-home' %}'>Community</a></div>
 		{% endif %}
 
 		{% if request.path == '/projects/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'projects-home' %}'>Projects</a></li>
+		<div class='nav-item'><a class = 'link-selected' href='{% url 'projects-home' %}'>Projects</a></div>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href='{% url 'projects-home' %}'>Projects</a></li>
+		<div class='nav-item'><a class = 'link' href='{% url 'projects-home' %}'>Projects</a></div>
 		{% endif %}
 
 		{% if request.path == '/senate/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'senate-home' %}'>Senate</a></li>
+		<div class='nav-item'><a class = 'link-selected' href='{% url 'senate-home' %}'>Senate</a></div>
 		{% else %}
-		<li class='nav-item'><a class = 'link' href='{% url 'senate-home' %}'>Senate</a></li>
+		<div class='nav-item'><a class = 'link' href='{% url 'senate-home' %}'>Senate</a></div>
 		{% endif %}
 
 		{% if request.user.is_authenticated %}
-		<li style=''class='nav-item'><a class = 'link' href="{% url 'logout' %}">Logout</a></li>
+		<div style=''class='nav-item'><a class = 'link' href="{% url 'logout' %}">Logout</a></div>
 		{% else %}
-		<li style=''class='nav-item'><a class = 'link' href="{% url 'login' %}">Login</a></li>
+		<div style=''class='nav-item'><a class = 'link' href="{% url 'login' %}">Login</a></div>
 		{% endif %}
-	</ul>
+	</div>
 </nav>
 </header>
 
