@@ -73,20 +73,6 @@ def review_community_instance(request, communityid):
 
 		if true_condintions == len(game_form_dict.values()):
 
-			if extra_section.is_valid():
-				overall_rating = extra_section.cleaned_data['overall_rating']
-				extra_comments = extra_section.cleaned_data['extra_comments']
-				how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
-				pacing_rating = extra_section.cleaned_data['pacing_rating']
-				CommunityExtraRatings.objects.create(
-					user=user, 
-					community=community, 
-					overall_rating=overall_rating, 
-					extra_comments=extra_comments, 
-					how_can_we_improve_survey=how_can_we_improve_survey,
-					pacing_rating=pacing_rating,
-				)
-
 			for games in community.occuring_games.all():
 				if CommunityGameRatings.objects.filter(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0]): # Checks if the user has submitted a survey for the game
 					raise ValidationError("You've already submitted this survey!")
@@ -99,6 +85,22 @@ def review_community_instance(request, communityid):
 						game_rating=game_rating, 
 						game_comments=game_comments
 					)
+					
+					if extra_section.is_valid():
+						overall_rating = extra_section.cleaned_data['overall_rating']
+						extra_comments = extra_section.cleaned_data['extra_comments']
+						how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
+						pacing_rating = extra_section.cleaned_data['pacing_rating']
+						CommunityExtraRatings.objects.create(
+						user=user, 
+						community=community, 
+						overall_rating=overall_rating, 
+						extra_comments=extra_comments, 
+						how_can_we_improve_survey=how_can_we_improve_survey,
+						pacing_rating=pacing_rating,
+					)
+
+
 
 			return HttpResponseRedirect(reverse('community-home', current_app='Community'))
 

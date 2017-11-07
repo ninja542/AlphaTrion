@@ -107,7 +107,7 @@ def communityinstviewresults(request):
 	"""
 
 	communities = CommunityInst.objects.all()
-	return render(request, 'data_analysis/survey_result_list.html', {'communityinst': communities})
+	return render(request, 'data_analysis/survey_result_list.html', {'communityinst_list': communities})
 
 
 @login_required
@@ -120,7 +120,7 @@ def survey_results(request, communityid):
 	''community''
 		Communityinst object
 	
-	''mean''
+	''game_mean''
 		Mean of all game ratings for all games in Community object 
 	
 	''game_ratings_dict'' 
@@ -128,6 +128,12 @@ def survey_results(request, communityid):
 
 	''hs''
 		Host score
+
+	''extras_ratings''
+		Contains all the extras ratings objects for this community (overall rating, etc)
+
+	''overall_mean''
+		The mean for the overall rating of a community. 
 	
 
 	**Template:**
@@ -144,32 +150,31 @@ def survey_results(request, communityid):
 			game_rating_list.append(instances)
 			game_rating_dict[index] = instances 
 			index += 1 
-	mean = round(sum([r.game_rating for r in list(game_rating_dict.values())])/ ( len(game_rating_dict) ), 2)  	
+	game_mean = round(sum([r.game_rating for r in list(game_rating_dict.values())])/ ( len(game_rating_dict) ), 2)  	
 	extras_list = [r
 	 for r in CommunityExtraRatings.objects.filter(community=community)]
 	
 	pacing_rating_text = [p.pacing_rating 
 	 for p in CommunityExtraRatings.objects.filter(community=community)]	
 
+	overall_values = [r.overall_rating for r in extras_list]
+	overall_mean = sum(overall_values)/len(overall_values)
+
+
 	# PRIMITIVE ENCODER, TO BE REPLACED WITH SKLEARN AFTER MINICONDA EXPIERMENTATION
 	pacing_rating_numeric = []
 	for values in pacing_rating_text:
-		if values == 'v':
-			pacing_rating_numeric.append(0)
-		elif values == 'g':
-			pacing_rating_numeric.append(1)
-		elif values == 'd':
-			pacing_rating_numeric.append(2)
-		elif values == 'b':
-			pacing_rating_numeric.append(3)
-		elif values == 'h':
-			pacing_rating_numeric.append(4)
+		if values == 'v': pacing_rating_numeric.append(0)
+		elif values == 'g': pacing_rating_numeric.append(1)
+		elif values == 'd': pacing_rating_numeric.append(2)
+		elif values == 'b': pacing_rating_numeric.append(3)
+		elif values == 'h': pacing_rating_numeric.append(4)
 
-	hs = host_score([r.overall_rating for r in extras_list], pacing_rating_numeric)
+	hs = round(host_score(overall_values, pacing_rating_numeric), 2)
 
 	return render(request, 'data_analysis/survey_specific_result.html', 
-		{'community': community, 'mean': mean, 'game_ratings_dict': game_rating_dict, 
-		'host_score': hs})
+		{'community': community, 'game_mean': game_mean, 'game_ratings_dict': game_rating_dict, 
+		'host_score': hs, 'extras_ratings': extras_list, 'overall_mean': overall_mean})
 
 
 @login_required

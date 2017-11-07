@@ -4,68 +4,95 @@
 <title>Community Surveys</title>
 {% endblock %}
 
-
 {% block style %}
 <style type='text/css'>
-.survey{
+
+html, body {
+	height: 100%;
+	width: 100%; 
+	margin: 0;
+	padding: 0;
+}
+
+
+.survey {
+	height: 50%; 
+	position: relative;
+	margin: 0;
 	width:33.33333%;
 	float: left;
-	position: relative;
-	padding-bottom: 33.33333%
-	margin: 0;
 	outline: 0;
-	padding: 0;
-
-
 }
 
 .thumbnail{
+	object-fit: contain; 
+	display: block;
+	padding: 0 0 0 0;
+	position: relative;
+	margin: 0;
 	width: 100%;
-	max-width: 100%;
-	min-width: 100%;
-	height: auto;
-	max-height: 100%;
-	min-height: 0;
+	height: 100%;
+}
 
+.thumbnail:hover{
+	opacity: .9;
 }
 
 .survey-title{
+	margin: 0;
 	position: absolute;
-	left: 0;
-	bottom: 0;
 	width:100%;
+	left: 0;
+	bottom: 0px;
 	background: rgba(0,0,0, 0.25);
-	background-image: initial;
 	text-align: center;
 	display: block;
-	font
-	text-decoration: none
+	text-decoration: none;
 	border-bottom: 0;
 }
 
+.entry-link{
+	margin: 0;
+	color: white;
+	text-decoration: none;
+}
+
+@media only screen and (max-width : 1083px){
+	.survey{
+		height: 75%;
+		width: 100%;
+	}
+}
+
 </style>
+
 {% endblock %}
+
+
 {% block content %}
-	{% if communityinst %}
-	{% for communities in communityinst %}
+	{% if communityinst_list %}
+	{% for communities in communityinst_list %}
 	<article id='{{ communities.date }}' class='survey'> 
 
 		<div class='thumbnail'>
 			{% load static %} 
-			<img class='thumbnail' src='{% static communities.photo.url|slice:"17:" %}'>
+			<a href='{% url 'community-results-specific' communities.id %}'>
+			<img class='thumbnail' src='{{ communities.photo }}'></a>
 		</div>
 
 		<div class='survey-title'>
 			<h1 class='date'>
-			<a class = 'entry-link' href="{% url 'community-results-specific' communities.id %}">{{communities.date}}</a>
+			<a class = 'entry-link' href="{% url 'community-results-specific' communities.id %}">{{ communities.date }}</a>
 			</h1>
 		</div>
-
-		<!--<a class = 'entry-link' href="">{{items.date}}</a>-->
 	</article>
-
 	{% endfor %}
+	
 	{% else %}
-	<p>opps</p>
+	
+	<p style="padding-top: 40px;">Surveys coming soon!</p>
+	
 	{% endif %}
+	
+
 {% endblock %}

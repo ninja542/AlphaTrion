@@ -36,12 +36,12 @@ class Minutes(models.Model):
 	Model to store a minute
 	"""
 	date = models.DateField()
-	embed_link = models.TextField(default=r'Link Goes Here!', 
+	embed_link = models.TextField(default=r'Embed Code Goes Here!', 
 		help_text='To get a embed link goto file -> publish to web -> embed -> copy the link into here')
 	
 
 	def __str__(self):
-		return self.date
+		return "".format(self.date)
 
 	class Meta:
 		verbose_name = 'Minute'

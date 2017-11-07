@@ -214,6 +214,7 @@ html, body{
 	}
 	
 	#Title{
+		text-decoration: none;
 		font-family: 'Roboto', serif;
 		font-size: 2em; 
 		float: left;
@@ -223,7 +224,8 @@ html, body{
 	}
 
 	#Senator-Sub-List{
-		position: static; 
+		position: static;
+		background-color: black;
 	}
 }
 
@@ -245,26 +247,27 @@ html, body{
 {% block nav-bar %}
 <header class="oheader">
 <nav >
-<b id='Title'>Student Senate</b>
+<a href="{% url 'home' %}" id='Title'>Student Senate</b>
 <a onclick='handlerfornavbar()' href="#" class='menu-icon'></a>
 	<ul class='navbar' id='navbar'>
-		{% if request.path == '/' or request.path == '/home/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></li>
-		{% else %}
+		{% load extras %}
+
 		<li class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></li>
-		{% endif %}
-	
-		{% if request.path == '/community/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'community-home' %}'>Community</a></li>
+		
+		{% if request.user|has_group:"Senators" %}
+		<li class='nav-item' id='Senator-Main-List'>
+			<p style='margin:0px;' id='Senator-Link' class='link' aria-haspopup="true">Community</a>
+			<ul id='Senator-Sub-List'>
+				<li><a class='link' href='{% url "community-home" %}'>Community Surveys</a></li>
+				<li><a class='link' href='{% url "community-results" %}'>Survey Results</a></li>
+			</ul>
+		</li>
+
 		{% else %}
 		<li class='nav-item'><a class = 'link' href='{% url 'community-home' %}'>Community</a></li>
 		{% endif %}
-
-		{% if request.path == '/projects/' %}
-		<li class='nav-item'><a class = 'link-selected' href='{% url 'projects-home' %}'>Projects</a></li>
-		{% else %}
+			
 		<li class='nav-item'><a class = 'link' href='{% url 'projects-home' %}'>Projects</a></li>
-		{% endif %}
 
 		<li class='nav-item' id='Senator-Main-List'>
 			<p style='margin:0px;' id='Senator-Link' class='link' aria-haspopup="true">Senate</a>
@@ -279,6 +282,7 @@ html, body{
 		{% else %}
 		<li style=''class='nav-item'><a class = 'link' href="{% url 'login' %}">Login</a></li>
 		{% endif %}
+
 	</ul>
 </nav>
 </header>

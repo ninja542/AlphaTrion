@@ -20,8 +20,6 @@ def senate_project_survey(request, projectid):
 	if request.method == "POST":
 		survey = CustomSurveyForm(request.POST, user=user, survey=survey)
 		if survey.is_valid():
-			if AnswerText.objects.filter(user=user, survey=survey) or AnswerInt.objects.filter(user=user, survey=survey):
-				raise ValidationError("You've already submitted this survey!")
 			survey.save()
 			return HttpResponseRedirect(reverse('senate-projects-home', current_app='Project'))
 

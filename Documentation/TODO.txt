@@ -5,6 +5,7 @@ PROGRAMMING - Overall:
 -4 Finish non-manual addition of community (10-27) <-- RIP 
 -4 Custom Survey for Community (10-27) <-- RIP
 -3 Add Website Survey (Meta)
+-3 Make buttons such as delete and add look actaully nice and be noticable
 -3 Song Suggestions for Community 
 -2 Security Checkups  
 -2 Clean up Import statments
@@ -12,6 +13,7 @@ PROGRAMMING - Overall:
 -1 Update documentation
 
 STYLING - Overall: 
+-4 PLEASE CLEAN UP base.html 
 -4 Note Student-Body Specific Complaints (About Website)
 -4 Minutes Page Mobile
 -3 Apply Senate-Projects Styling to Community and Possbily Senate-Members, MOBILE WEBITE 
