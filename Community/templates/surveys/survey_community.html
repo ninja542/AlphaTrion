@@ -21,6 +21,26 @@ li {
 </style>
 {% endblock %}
 
+{% block script %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type='text/javascript'>
+$(function(){
+	$(".description-image").click(function(){
+		var clicks = $(this).data("clicks");
+		if (clicks){
+			$("#game-" + this.id + "-description").css("display", "none");
+		}
+
+		else {
+			$("#game-" + this.id + "-description").css("display", "inline-block");
+		}
+		$(this).data("clicks", !clicks);
+	})
+
+});
+</script>
+{% endblock %}
+
 {% block content %}
 {% if request.user.id == user.id %}
 	
@@ -33,7 +53,9 @@ li {
 	<label>What did you think of {{ games }} 
 		
 	{% load static %}
-	<img style="height:1em;width:1em;" src="{% static "Minor/icons.png" %}" alt="info">
+	<img class='description-image' id='{{games.name}}'style="height:1em;width:1em;" src="{% static "Minor/icons.png" %}" alt="info">
+	<p style='displaY:none' id='game-{{games.name}}-description'>{{ games.description }}</p>
+
 
 	</label>
 	{% load dict %}

@@ -5,6 +5,11 @@ from .models import Questions, CustomSurvey, SurveyQuestions, AnswerInt, AnswerT
 
 # https://github.com/jessykate/django-survey
 class CustomSurveyForm(forms.ModelForm):
+	"""
+	Querys a connection between a Custom Survey object and it's relation to questions 
+	links to :model:'Project.Questions'
+	links to :model:'Project.CustomSurvey'
+	"""
 	class Meta:
 		model = CustomSurvey
 		exclude = ('title', 'date', 'author', 'questions')

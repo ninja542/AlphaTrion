@@ -7,6 +7,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ValidationError
 
 def senate_project_survey(request, projectid):
+	"""
+	Generalized view for a custom senate project survey
+
+	**Context**
+	''survey''
+		CustomSurvey form that is related to the project
+	
+	**Template:**
+	:template:'senate-project-survey.html'
+	
+	"""
 	user = None
 	if request.user.is_authenticated():
 		user = request.user 
@@ -30,19 +41,70 @@ def senate_project_survey(request, projectid):
 
 
 def projects_home(request):
+	"""
+	Home view for all projects (Depreciated, soon to be made into drop down)
+	
+	**Template:**
+	:template:'projects-home.html'
+	
+	"""
 	return render(request, 'projects-home.html')
 
 def student_projects(request):
+	"""
+	Home view for all student projects
+
+	**Context**
+	''student_projects''
+		All projects from the studentprojects model
+	
+	**Template:**
+	:template:'student-projects.html'
+	
+	"""
 	student_projects = StudentProjects.objects.all()
 	return render(request, 'student-projects.html', {'student_projects': student_projects})
 
 def senate_projects(request):
+	"""
+	Home view for all senate projects
+
+	**Context**
+	''student_projects''
+		All projects from the senateprojects model 
+	
+	**Template:**
+	:template:'senate-projects.html'
+	
+	"""
 	senate_projects = SenateProjects.objects.all()
 	return render(request, 'senate-projects.html', {'senate_projects': senate_projects})
 
 def senate_project_specific(request, projectid):
+	"""
+	Generalized view for a senate project
+
+	**Context**
+	''project''
+		A specific senate project object
+	
+	**Template:**
+	:template:'senate-project-specific.html'
+	
+	"""
 	project = get_object_or_404(SenateProjects, pk=projectid)
 	return render(request, 'senate-project-specific.html', {'project': project})
 
 def student_project_specific(request):
+	"""
+	Generalized view for a senate project
+
+	**Context**
+	''project''
+		A specific senate project object
+	
+	**Template:**
+	:template:'senate-project-specific.html'
+	
+	"""
 	return render(request, 'student-project-specific.html')

@@ -115,7 +115,7 @@ class CommunityExtraRatings(models.Model):
 	community = models.ForeignKey(CommunityInst)
 	overall_rating = models.PositiveIntegerField(default=5, choices=RATING_CHOICES)
 	extra_comments = models.TextField(blank=True)
-	how_can_we_improve_survey = models.TextField()
+	how_can_we_improve_survey = models.TextField(blank=True)
 	COMMUNITY_PACING_RATINGS = (
 		('v', 'Very Good'),
 		('g', 'Good'),
