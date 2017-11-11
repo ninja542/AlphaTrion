@@ -15,6 +15,17 @@
 
 
 {% block analytics-script %}
+<!-- 
+• ▌ ▄ ·.  ▄▄▄· ▄▄▄▄▄▄▄▄▄▄ ▄ .▄▄▄▄ .▄▄▌ ▐ ▄▌     ▄▄▄·        ▄▄▄▄·  ▄· ▄▌▄▄▄  ·▄▄▄▄  
+·██ ▐███▪▐█ ▀█ •██  •██  ██▪▐█▀▄.▀·██· █▌▐█    ▐█ ▀█        ▐█ ▀█▪▐█▪██▌▀▄ █·██▪ ██ 
+▐█ ▌▐▌▐█·▄█▀▀█  ▐█.▪ ▐█.▪██▀▐█▐▀▀▪▄██▪▐█▐▐▌    ▄█▀▀█        ▐█▀▀█▄▐█▌▐█▪▐▀▀▄ ▐█· ▐█▌
+██ ██▌▐█▌▐█ ▪▐▌ ▐█▌· ▐█▌·██▌▐▀▐█▄▄▌▐█▌██▐█▌    ▐█ ▪▐▌       ██▄▪▐█ ▐█▀·.▐█•█▌██. ██ 
+▀▀  █▪▀▀▀ ▀  ▀  ▀▀▀  ▀▀▀ ▀▀▀ · ▀▀▀  ▀▀▀▀ ▀▪     ▀  ▀  ▀     ·▀▀▀▀   ▀ • .▀  ▀▀▀▀▀▀•
+!-->
+<!-- 
+01000001  01100011 01110101 01110010 01101001 01101111 01110101 01110011  01110011 01101111 01110101 01101100  01101001 01101110 01100100 01100101 01100101 01100100 00101110 
+-->
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,210 +38,13 @@
 </script>
 {% endblock %}
 
-{% block nav-bar-style %}
+{% block nav-bar-extras %}
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type='text/javascript'>
 
-/*
-	By Osvaldas Valutis, www.osvaldas.info
-	Available for use under the MIT License
-*/
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/navbar.css' %}">
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 
-;(function(e,t,n,r){e.fn.doubleTapToGo=function(r){if(!("ontouchstart"in t)&&!navigator.msMaxTouchPoints&&!navigator.userAgent.toLowerCase().match(/windows phone os 7/i))return false;this.each(function(){var t=false;e(this).on("click",function(n){var r=e(this);if(r[0]!=t[0]){n.preventDefault();t=r}});e(n).on("click touchstart MSPointerDown",function(n){var r=true,i=e(n.target).parents();for(var s=0;s<i.length;s++)if(i[s]
-	==t[0])r=false;if(r)t=false})});return this}})(jQuery,window,document);
-
-$(function(){
-	$('Senator-Main-List').doubleTapToGo();
-});
-
-function handlerfornavbar(){
-	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-	if (w <= 1083){	
-		if (document.getElementsByClassName("navbar")[0].style.display == "block"){
-			document.getElementsByClassName("navbar")[0].style.display = "none";
-		}
-		else{
-			document.getElementsByClassName("navbar")[0].style.display = "block";
-		}
-	}
-}
-
-function resizehandler(){
-	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-	if (w <= 1083){
-		document.getElementsByClassName("navbar")[0].style.display = "none";
-	}
-	else{
-		document.getElementsByClassName("navbar")[0].style.display = "block";
-	}
-
-}
-
-window.onresize = resizehandler
-
-
-
-
-</script>
-
-<style type='text/css'>
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-html, body{
-	margin: 0;
-	padding 0;	
-}
-
-.oheader{
-	z-index: 100;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 40px;
-	border-bottom: black solid;
-}
-
-.navbar {
-	display: block;
-	height: 40px;
-	width:100%;
-	margin: 0; 
-	list-style-type: none;
-	overflow: hidden;
-	background-color: #8f2837;
-	padding: 0; 
-}
-
-.nav-item{
-	float: left;
-}
-
-.link {
-	border-right: solid 1px;
-	border-color: black;
-	text-align: center;
-	font-size: 2.2em;
-    padding: 1px 20px;
-    text-decoration: none;
-	color: #efc729; 
-}
-
-.link:hover {
-	overflow: hidden;
-	background-color: #111;
-}
-
-.link-selected {
-	border-right: solid 1px;
-	border-color: black;
-	text-align: center;
-	font-size: 2.2em;
-    padding: 1px 137px;
-    text-decoration: none;
-	color: #efc729;
-	background-color: #111;
- }
-
-.link-selected:hover {
- 	opacity: .8; 
- }
-
-.menu-icon{
- 	float: right;
- 	display: none;
- 	width: 40px;
- 	height: 40px; 
- 	background: black center;
- }
-
-#Title {
- 	display: none
- }
-
-#Senator-Sub-List {
-	font-size: .7em;
-	padding: 0;
-	background-color: #8f2837;
-	list-style: none;
-	text-align: center;
-	display: none;
-	position: absolute;
-	top: 100%;
-}
-
-#Senator-Sub-List a{
-	border-right: none;
-}
-
-#Senator-Main-List:hover ul{ 
-	display: block;
-}
-
-
-@media only screen and (max-width : 1083px){
-	.menu-icon{
-		display: inline-block;
-	}
-
-	.oheader{
-		background-color: #8f2837;
-	}
-
-	.navbar {
-		position: absolute;
-		z-index: 100;
-		float: right;
-		display: none;
-		padding: 15px;
-		background: black;
-		border: 5px solid #444;
-		right: 0px;
-		top: 40px;
-		width: auto;
-		height: auto;
-		border-radius: 4px 0 4px 4px; 
-	}
-
-	.link{
-		font-size: 1em;
-
-	}
-
-	.link-selected{
-		font-size: 1em;
-		border-right: solid 1px;
-		border-color: black;
-		text-align: center;
-		font-size: 1em;
-    	padding: 1px 20px;
-    	text-decoration: none;
-		color: #efc729; 
-	}
-
-	#nav-item{
-		text-align: center;
-		width: 100%;
-		padding: 10px 0;
-		margin: 0;
-	}
-	
-	#Title{
-		text-decoration: none;
-		font-family: 'Roboto', serif;
-		font-size: 2em; 
-		float: left;
-		color: #efc729;
-		display: inline-block;
-		width: (100% - 40px);
-	}
-
-	#Senator-Sub-List{
-		position: static;
-		background-color: black;
-	}
-}
-
-
-</style>
 {% endblock %}
 
 

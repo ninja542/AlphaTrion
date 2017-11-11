@@ -18,48 +18,9 @@ function delete_handler(){
 {% endblock %}
 
 {% block style %}
-<style type='text/css'>
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/minutes.css' %}">
 
-html, body {
-	height: 100%;
-	width: 100%;
-}
-
-#Minutes{ 
-	padding-top: 40px;
-	height: 100%;
-	width: 100%;
-}
-
-#Minute{
-	margin: 0;
-	float: left;
-	height: 50%;
-	width: 50%;
-}
-
-#Minute iframe{
-	border:none;
-	height: 100%;
-	width: 100%;
-}
-
-@media only screen and (max-width : 1083px){
-	#Minutes{
-		display: block;
-	}
-	#Minute{
-		padding-bottom: 50px;
-		height: 75%;
-		width: 100%;
-	}
-	#Minute iframe{
-		border: 1px solid black;
-	}
-}
-
-
-</style>
 {% endblock %}
 
 {% block content %}
@@ -68,7 +29,7 @@ html, body {
 
 <div style='text-align: center; padding-top: 40px;' id='add'>
 	{% if request.user|has_group:"Senators" %}
-	<a style='text-align: center; padding-top: 40px;' href="{% url 'add-minutes' %}"><img style='height: 10px; width: 10px;' src="{% static 'temp3.png' %}"></a>
+	<a style='text-align: center; padding-top: 40px;' href="{% url 'add-minutes' %}"><img style='height: 10px; width: 10px;' src="{% static 'images/temp3.png' %}"></a>
 	{% endif %}
 
 </div>
@@ -77,7 +38,7 @@ html, body {
 {% for minutes in minutes %}
 	<div id='Minute'>
 		{% if request.user|has_group:"Senators" %}
-		<a onclick='return delete_handler();' href="{% url 'delete-minutes' minutes.id %}"><img style='height: 10px; width: 10px;' src="{% static 'temp2.png' %}"></a>
+		<a onclick='return delete_handler();' href="{% url 'delete-minutes' minutes.id %}"><img style='height: 10px; width: 10px;' src="{% static 'images/temp2.png' %}"></a>
 		{% else %}
 		{% endif %}
 		{{ minutes.embed_link | safe }}

@@ -2,37 +2,8 @@
 {% block title %}<title>{{ project.title }}</title>{% endblock %}
 
 {% block style %}
-<style text='type/css'>
-html, body{
-	margin: 0;
-	height: 100%;
-	width: 100%;
-}
-
-.title{
-	text-align: center;
-}
-
-.description{
-	text-align: center;
-}
-
-.survey-link{
-	text-align: center;
-}
-
-
-.photo{
-	background-color: rgba(143, 40, 55, 1);
-}
-
-.picture{
-	margin: auto;
-	display: block;
-	width: 50%;
-	height: 50%;
-}
-</style>
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/projects-home.css' %}">
 {% endblock %}
 
 {% block content %}

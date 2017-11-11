@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+html, body{
+	margin: 0;
+	padding 0;	
+}
+
+.oheader{
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 40px;
+	border-bottom: black solid;
+}
+
+.navbar {
+	display: block;
+	height: 40px;
+	width:100%;
+	margin: 0; 
+	list-style-type: none;
+	overflow: hidden;
+	background-color: #8f2837;
+	padding: 0; 
+}
+
+.nav-item{
+	float: left;
+}
+
+.link {
+	border-right: solid 1px;
+	border-color: black;
+	text-align: center;
+	font-size: 2.2em;
+    padding: 1px 20px;
+    text-decoration: none;
+	color: #efc729; 
+}
+
+.link:hover {
+	overflow: hidden;
+	background-color: #111;
+}
+
+.link-selected {
+	border-right: solid 1px;
+	border-color: black;
+	text-align: center;
+	font-size: 2.2em;
+    padding: 1px 137px;
+    text-decoration: none;
+	color: #efc729;
+	background-color: #111;
+ }
+
+.link-selected:hover {
+ 	opacity: .8; 
+ }
+
+.menu-icon{
+ 	float: right;
+ 	display: none;
+ 	width: 40px;
+ 	height: 40px; 
+ 	background: black center;
+ }
+
+#Title {
+ 	display: none
+ }
+
+#Senator-Sub-List {
+	font-size: .7em;
+	padding: 0;
+	background-color: #8f2837;
+	list-style: none;
+	text-align: center;
+	display: none;
+	position: absolute;
+	top: 100%;
+}
+
+#Senator-Sub-List a{
+	border-right: none;
+}
+
+#Senator-Main-List:hover ul{ 
+	display: block;
+}
+
+
+@media only screen and (max-width : 1083px){
+	.menu-icon{
+		display: inline-block;
+	}
+
+	.oheader{
+		background-color: #8f2837;
+	}
+
+	.navbar {
+		position: absolute;
+		z-index: 100;
+		float: right;
+		display: none;
+		padding: 15px;
+		background: black;
+		border: 5px solid #444;
+		right: 0px;
+		top: 40px;
+		width: auto;
+		height: auto;
+		border-radius: 4px 0 4px 4px; 
+	}
+
+	.link{
+		font-size: 1em;
+
+	}
+
+	.link-selected{
+		font-size: 1em;
+		border-right: solid 1px;
+		border-color: black;
+		text-align: center;
+		font-size: 1em;
+    	padding: 1px 20px;
+    	text-decoration: none;
+		color: #efc729; 
+	}
+
+	#nav-item{
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+	
+	#Title{
+		text-decoration: none;
+		font-family: 'Roboto', serif;
+		font-size: 2em; 
+		float: left;
+		color: #efc729;
+		display: inline-block;
+		width: (100% - 40px);
+	}
+
+	#Senator-Sub-List{
+		position: static;
+		background-color: black;
+	}
+}

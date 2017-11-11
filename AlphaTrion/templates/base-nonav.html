@@ -2,46 +2,13 @@
 <html>
 <head>
 {% block form-style %}
-<style type='text/css'>
-input, textarea{
-	padding: 9px; 
-	border: 1px solid #e5e5e5; 
-	outline: 0; 
-	font: normal 13px/100% Verdana, Tahoma, sans-serfif;
-	background: white;
-	
-}
-
-textarea{
-	width: 400px;
-	height: 150px;
-	line-height: 150%;
-}
-
-input:hover, textarea:hover,
-input:focus, textarea:focus{
-	background: #c9c9c9; 
-}
-
-form label{
-	margin-left: 10px;
-	color: #999999; 
-}
-
-input[type=submit]{
-	padding: 9px 15px; 
-	width: 75px; 
-	cursor: pointer; 
-	background-color: #8f2837;
-	border: 0;
-	font-size: 14px;
-	color: #efc729;
-}
-</style>
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/form.css' %}">
 {% endblock %}
+
 {% block style %}
-
 {% endblock %}
+
 {% block analytics %}
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -54,6 +21,8 @@ input[type=submit]{
 
 </script>
 {% endblock %}
+
+
 {% block script %}
 {% endblock %}
 
@@ -64,6 +33,7 @@ input[type=submit]{
 {% block title %}<title>Title</title>{% endblock %}
 </head>
 <body>
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 </body>
 </html>

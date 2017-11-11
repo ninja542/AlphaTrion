@@ -3,50 +3,8 @@
 {% block title %}<title>Projects</title>{% endblock %}
 
 {% block style %}
-<style type='text/css'>
-html, body{
-	width: 100%;
-	height: 100%;
-}
-
-#Senate{
-	padding-top: 40px; 
-	display: inline-block;
-	text-align: center;
-	width: 50%;
-	height: 50%;
-}
-
-#Senate .title-text{
-	text-decoration: none;
-	color: black;
-}
-
-#Student{
-	padding-top: 40px;
-	display: inline-block;
-	float: right;
-	text-align: center;
-	width: 50%;
-	height: 50%;
-}
-
-
-.thumbnail{
-	width: 100%;
-	height: auto;
-}
-
-.title .title-text{
-	text-decoration: none;
-	color: black;
-}
-
-
-
-
-
-</style>
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/projects-home.css' %}">
 {% endblock %}
 
 

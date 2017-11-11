@@ -5,67 +5,8 @@
 {% endblock %}
 
 {% block style %}
-<style type='text/css'>
-
-html, body {
-	height: 100%;
-	width: 100%; 
-	margin: 0;
-	padding: 0;
-}
-
-
-.survey {
-	height: 50%; 
-	position: relative;
-	margin: 0;
-	width:33.33333%;
-	float: left;
-	outline: 0;
-}
-
-.thumbnail{
-	object-fit: contain; 
-	display: block;
-	padding: 0 0 0 0;
-	position: relative;
-	margin: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.thumbnail:hover{
-	opacity: .9;
-}
-
-.survey-title{
-	margin: 0;
-	position: absolute;
-	width:100%;
-	left: 0;
-	bottom: 0px;
-	background: rgba(0,0,0, 0.25);
-	text-align: center;
-	display: block;
-	text-decoration: none;
-	border-bottom: 0;
-}
-
-.entry-link{
-	margin: 0;
-	color: white;
-	text-decoration: none;
-}
-
-@media only screen and (max-width : 1083px){
-	.survey{
-		height: 75%;
-		width: 100%;
-	}
-}
-
-</style>
-
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/survey_result_list.css' %}">
 {% endblock %}
 
 

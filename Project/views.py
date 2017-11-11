@@ -23,7 +23,7 @@ def senate_project_survey(request, projectid):
 		user = request.user 
 	
 	if not user:
-		return request(request, 'not_logged_in.html')
+		return render(request, 'not_logged_in.html')
 
 	project = get_object_or_404(SenateProjects, pk=projectid)
 	survey = project.survey
