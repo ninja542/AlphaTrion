@@ -38,11 +38,11 @@
 function handlerfornavbar(){
 	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	if (w <= 1083){	
-		if (document.getElementsByClassName("navbar")[0].style.display == "block"){
+		if (document.getElementsByClassName("navbar")[0].style.display == "flex"){
 			document.getElementsByClassName("navbar")[0].style.display = "none";
 		}
 		else{
-			document.getElementsByClassName("navbar")[0].style.display = "block";
+			document.getElementsByClassName("navbar")[0].style.display = "flex";
 		}
 	}
 }
@@ -53,7 +53,7 @@ function resizehandler(){
 		document.getElementsByClassName("navbar")[0].style.display = "none";
 	}
 	else{
-		document.getElementsByClassName("navbar")[0].style.display = "block";
+		document.getElementsByClassName("navbar")[0].style.display = "flex";
 	}
 
 
@@ -96,19 +96,19 @@ html, body{
 .navbar > div {
 	flex-grow: 1;
 	text-align: center;
-	padding: 16px;
+	padding: 0;
 }
 
 .nav-item{
-/* 	float: left; */
+	border-right: black solid 1px;
 }
 
 .link {
-	border-right: solid 1px;
+	flex-grow: 1;
 	border-color: black;
 	text-align: center;
 	font-size: 2.2em;
-    padding: 1px 20px;
+
     text-decoration: none;
 	color: #efc729; 
 }
@@ -123,7 +123,7 @@ html, body{
 	border-color: black;
 	text-align: center;
 	font-size: 2.2em;
-    padding: 1px 137px;
+
     text-decoration: none;
 	color: #efc729;
 	background-color: #111;
@@ -216,34 +216,19 @@ html, body{
 <b id='Title'>Discovery Senate</b>
 <a href="#" class='menu-icon'></a>
 	<div class='navbar' id='navbar'>
-		{% if request.path == '/' or request.path == '/home/' %}
-		<div class='nav-item'><a class = 'link-selected' href='{% url 'home' %}'>Home</a></div>
-		{% else %}
-		<div class='nav-item'><a class = 'link' href='{% url 'home' %}'>Home</a></div>
-		{% endif %}
-	
-		{% if request.path == '/community/' %}
-		<div class='nav-item'><a class = 'link-selected' href='{% url 'community-home' %}'>Community</a></div>
-		{% else %}
-		<div class='nav-item'><a class = 'link' href='{% url 'community-home' %}'>Community</a></div>
-		{% endif %}
 
-		{% if request.path == '/projects/' %}
-		<div class='nav-item'><a class = 'link-selected' href='{% url 'projects-home' %}'>Projects</a></div>
-		{% else %}
-		<div class='nav-item'><a class = 'link' href='{% url 'projects-home' %}'>Projects</a></div>
-		{% endif %}
+		<a class = 'link' href='{% url 'home' %}'><div class='nav-item'>Home</div></a>
 
-		{% if request.path == '/senate/' %}
-		<div class='nav-item'><a class = 'link-selected' href='{% url 'senate-home' %}'>Senate</a></div>
-		{% else %}
-		<div class='nav-item'><a class = 'link' href='{% url 'senate-home' %}'>Senate</a></div>
-		{% endif %}
+		<a class = 'link' href='{% url 'community-home' %}'><div class='nav-item'>Community</div></a>
+
+		<a class = 'link' href='{% url 'projects-home' %}'><div class='nav-item'>Projects</div></a>
+
+		<a class = 'link' href='{% url 'senate-home' %}'><div class='nav-item'>Senate</div></a>
 
 		{% if request.user.is_authenticated %}
-		<div style=''class='nav-item'><a class = 'link' href="{% url 'logout' %}">Logout</a></div>
+		<a class = 'link' href="{% url 'logout' %}">Logout<div style=''class='nav-item'></div></a>
 		{% else %}
-		<div style=''class='nav-item'><a class = 'link' href="{% url 'login' %}">Login</a></div>
+		<a class = 'link' href="{% url 'login' %}"><div style=''class='nav-item'>Login</div></a>
 		{% endif %}
 	</div>
 </nav>
