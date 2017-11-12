@@ -1,62 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}<title>Senate Projects</title>{% endblock %}
+
 {% block style %}
-
-<style type='text/css'>
-html, body{
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.article-main{
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-}
-
-.articles{
-	position: relative;
-	margin: 0;
-	outline: 0;
-	width: 50%;
-	height: 50%;
-	float: left;
-}
-
-.thumbnail{
-	object-fit: contain;
-	text-align: center;
-	width:100%;
-	height: 100%;
-	background: white;
-}
-
-.thumbnail:hover{
-	opacity: .7;
-}
-
-.title{
-	margin: 0;
-	position: absolute;
-	width:100%;
-	left: 0;
-	bottom: 0px;
-	background: rgba(0,0,0, 0.5);
-	text-align: center;
-	display: block;
-	text-decoration: none;
-	border-bottom: 0;
-	margin: 0;
-	color: white;
-	text-decoration: none;
-}
-
-</style>
-
-
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/senate-projects.css' %}">
 {% endblock %}
+
 {% block content %}
 {% if senate_projects %}
 <div class='article-main'>

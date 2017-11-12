@@ -25,6 +25,30 @@ class CommunityInstView(generic.ListView):
 
 # Specfic Survey for a community
 def review_community_instance(request, communityid):
+	"""
+	Gets a review for a community 
+
+	**Context**
+	''community''
+		Communityinst object
+	
+	''game_form_dict''
+		Stores Game objects for all the games linked to the Communityinst
+	
+	''user'' 
+		The current user
+
+	''pacing_section''
+		Form linking this user & community to a pacing rating
+
+	''extra_ratings''
+		Form linking this user & community to a extra rating
+	
+
+	**Template:**
+	:template:'surveys/survey_community.html'
+
+	"""
 	user = None
 	if request.user.is_authenticated():
 		user = request.user
@@ -39,7 +63,6 @@ def review_community_instance(request, communityid):
 		for games in community.occuring_games.all():
 			game_form_dict[games.name] = CommunityGameRatingsForm(request.POST, prefix='{}'.format(games.name))
 
-		pacing_section = CommunityPacingRatingsForm(request.POST)
 		extra_section = CommunityExtraRatingsForm(request.POST)
 		true_condintions = 0 
 		for y in game_form_dict.values():
@@ -49,24 +72,6 @@ def review_community_instance(request, communityid):
 				pass
 
 		if true_condintions == len(game_form_dict.values()):
-			if pacing_section.is_valid():
-				pacing_rating = pacing_section.cleaned_data['pacing_rating']
-				if CommunityPacingRatings.objects.filter(user=user, community=community):
-					raise ValidationError("You've already submitted this survey!")
-				else:
-					CommunityPacingRatings.objects.create(user=user, community=community, pacing_rating=pacing_rating)
-
-			if extra_section.is_valid():
-				overall_rating = extra_section.cleaned_data['overall_rating']
-				extra_comments = extra_section.cleaned_data['extra_comments']
-				how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
-				CommunityExtraRatings.objects.create(
-					user=user, 
-					community=community, 
-					overall_rating=overall_rating, 
-					extra_comments=extra_comments, 
-					how_can_we_improve_survey=how_can_we_improve_survey
-				)
 
 			for games in community.occuring_games.all():
 				if CommunityGameRatings.objects.filter(user=user, games=CommunityGames.objects.filter(communityinst=community, game=games)[0]): # Checks if the user has submitted a survey for the game
@@ -80,22 +85,50 @@ def review_community_instance(request, communityid):
 						game_rating=game_rating, 
 						game_comments=game_comments
 					)
+					
+					if extra_section.is_valid():
+						overall_rating = extra_section.cleaned_data['overall_rating']
+						extra_comments = extra_section.cleaned_data['extra_comments']
+						how_can_we_improve_survey = extra_section.cleaned_data['how_can_we_improve_survey']
+						pacing_rating = extra_section.cleaned_data['pacing_rating']
+						CommunityExtraRatings.objects.create(
+						user=user, 
+						community=community, 
+						overall_rating=overall_rating, 
+						extra_comments=extra_comments, 
+						how_can_we_improve_survey=how_can_we_improve_survey,
+						pacing_rating=pacing_rating,
+						)	
+
+
 
 			return HttpResponseRedirect(reverse('community-home', current_app='Community'))
 
 	else:
-		if CommunityPacingRatings.objects.filter(community=community, user=user): pass
 		game_form_dict = dict()
 		for games in community.occuring_games.all():
 			game_form_dict[games.name] = CommunityGameRatingsForm(prefix='{}'.format(games.name))
-		pacing_section = CommunityPacingRatingsForm()
 		extra_section = CommunityExtraRatingsForm()
 
-	return render(request, 'surveys/survey_community.html', {'community': community, 'game_form_dict': game_form_dict, 'user': user, 'pacing_section': pacing_section, 'extra_ratings': extra_section})
+	return render(request, 'surveys/survey_community.html', {'community': community, 
+		'game_form_dict': game_form_dict, 'user': user, 'extra_ratings': extra_section})
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name="Senators").exists(), login_url='accounts/login')
 def add_community(request):
+	"""
+	Page for adding community without admin database
+
+	**Context**
+	''com''
+		Modelform for the community inst model
+	
+	''comgame''
+		Modelform for the CommunityGame model (without community inst field)
+	
+	**Template:**
+	:template:'surveys/add_community.html'
+	"""
 	CommunityGamesFormset = formset_factory(CommunityGamesCreationForm, extra=1)
 	if request.method == 'POST':
 		community_creation_form = CommunityInstanceCreationForm(request.POST)
@@ -112,6 +145,21 @@ def add_community(request):
 
 
 def add_handler(request, form, field):
+	"""
+	Handler for adding games to the database from a popup window 
+
+	**Context**
+	''form''
+		admin form to add a game
+	
+	''field''
+		admin field to add a game
+	
+	**Template:**
+	:template:'surveys/popup-form.html'
+
+	"""
+
 	if request.method == "POST":
 		form = form(request.POST)
 		if form.is_valid():
@@ -132,5 +180,8 @@ def add_handler(request, form, field):
 @login_required 
 @user_passes_test(lambda u: u.groups.filter(name='Senators').exists(), login_url='accounts/login')
 def add_game(request):
+	"""
+	Adds a game to the database from a non-admin page
+	"""
 	return add_handler(request, GameCreationForm, 'game')
 

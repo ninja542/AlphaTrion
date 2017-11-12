@@ -2,8 +2,9 @@
 
 {% block script %}
 <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.9.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
 <script type='text/javascript'>
 $(function(){
 	$('#comments').draggable({cancel: '.text'}).resizable();
@@ -71,12 +72,13 @@ tr:nth-child(even){
 </div>
 
 <div id='main'>
-<h4 id='overallmean'> Average Game Rating: {{mean}}</h4>
+<h4 id='overallmean'> Average Game Rating: {{ game_mean }}</h4>
+<h4 id='overallmean'> Average Overall Rating: {{ overall_mean }}</h4>
 
 <div id="individual-game-ratings"> 
 <div id='comments'>
 	<!-- put me in a table -->
-	<h5> Individual Game Ratings (Move me!)</h5>
+	<h5>====== GAME RATINGS ======</h5>
 	<table id='indivratet'>
 		<tr>
 			<th class='text'>Rating</th>
@@ -91,20 +93,30 @@ tr:nth-child(even){
 		</tr>
 	{% endfor %}
 	</table>
+	<h5>====== Community RATINGS ======</h5>
+	<table id='indivratet'>
+		<tr>
+			<th class='text'>Overall Rating</th>
+			<th class='text'>Community Comments</th>
+			<th class='text'>Pacing Rating</th>
+			<th class='text'>Comments about the survey</th>
+		</tr>
+	{% for ratings in extras_ratings %}
+		<tr>
+			<td><p class='text' id='user-game-rating'> {{ ratings.overall_rating }} </p></td>
+			<td><p class='text' id='user-game-comment'>"{{ ratings.extra_comments }}"</p></td>
+			<td><p class='text' id='user-game-see-again'>{{ ratings.pacing_rating }}</p></td>
+			<td><p class='text' id='user-game-see-again'>{{ ratings.how_can_we_improve_survey }}</p></td>
+		</tr>
+	{% endfor %}
+	</table>
 
 </div>
 
 <div id='rating-correlations'>
-	<div id='ltsa-correlation'> <!-- ltsa (Like to see again) -->
-		<h5> Ratings with those who would like to see the game again. </h5>
-		{% for seeagain in rating_correlation_list %}
-		<p id='user-rating'> Rating: {{ seeagain.game_rating }}</p>
-		{% endfor %}
-		<p> Mean of ratings for people who would like to see the game again : {{ ramean }}</p>
-	</div>
 
 	<div id='holistic-review'>
-		<p>Host Score for this Community<a id='host-score-link' href="{% url 'equation-documentation' %}"><sup>?</sup></a>: {{ host_score }}</p>
+		<h4>Host Score for this Community<a id='host-score-link' href="{% url 'equation-documentation' %}"><sup>?</sup></a>: {{ host_score }}</h4>
 
 	</div>
 

@@ -25,11 +25,6 @@ class CommunityGameRatingsForm(forms.ModelForm):
 		'game_comments': forms.Textarea(attrs={'placeholder': 'Describe what you thought of the game here! (Optional)'})
 		}
 
-class CommunityPacingRatingsForm(forms.ModelForm):
-	
-	class Meta:
-		model = CommunityPacingRatings
-		exclude = ('user', 'community')
 
 class CommunityExtraRatingsForm(forms.ModelForm):
 

@@ -1,0 +1,37 @@
+{% extends 'base-nonav.html' %}
+
+{% block title %}<title>Add Minutes</title>{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(function(){
+  	$(".datepicker").datepicker({
+  		changeMonth: true,
+  		changeYear: true, 
+  		dateFormat: 'yy-mm-dd',
+  	});
+ });
+</script>
+
+{% endblock %}
+
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+{% csrf_token %}
+<table>
+	<tr>
+		{{ form }}
+	</tr>
+</table>
+<input type='submit', value="Submit">
+
+{% endblock %}

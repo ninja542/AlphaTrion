@@ -15,6 +15,17 @@
 
 
 {% block analytics-script %}
+<!-- 
+• ▌ ▄ ·.  ▄▄▄· ▄▄▄▄▄▄▄▄▄▄ ▄ .▄▄▄▄ .▄▄▌ ▐ ▄▌     ▄▄▄·        ▄▄▄▄·  ▄· ▄▌▄▄▄  ·▄▄▄▄  
+·██ ▐███▪▐█ ▀█ •██  •██  ██▪▐█▀▄.▀·██· █▌▐█    ▐█ ▀█        ▐█ ▀█▪▐█▪██▌▀▄ █·██▪ ██ 
+▐█ ▌▐▌▐█·▄█▀▀█  ▐█.▪ ▐█.▪██▀▐█▐▀▀▪▄██▪▐█▐▐▌    ▄█▀▀█        ▐█▀▀█▄▐█▌▐█▪▐▀▀▄ ▐█· ▐█▌
+██ ██▌▐█▌▐█ ▪▐▌ ▐█▌· ▐█▌·██▌▐▀▐█▄▄▌▐█▌██▐█▌    ▐█ ▪▐▌       ██▄▪▐█ ▐█▀·.▐█•█▌██. ██ 
+▀▀  █▪▀▀▀ ▀  ▀  ▀▀▀  ▀▀▀ ▀▀▀ · ▀▀▀  ▀▀▀▀ ▀▪     ▀  ▀  ▀     ·▀▀▀▀   ▀ • .▀  ▀▀▀▀▀▀•
+!-->
+<!-- 
+01000001  01100011 01110101 01110010 01101001 01101111 01110101 01110011  01110011 01101111 01110101 01101100  01101001 01101110 01100100 01100101 01100101 01100100 00101110 
+-->
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,183 +38,18 @@
 </script>
 {% endblock %}
 
+{% block nav-bar-extras %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'css/navbar.css' %}">
+<script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
+
+{% endblock %}
+
+
 {% block script %}
 {% endblock %}
 
-
-
-{% block nav-bar-style %}
-
-<script type='text/javascript'>
-function handlerfornavbar(){
-	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-	if (w <= 1083){	
-		if (document.getElementsByClassName("navbar")[0].style.display == "flex"){
-			document.getElementsByClassName("navbar")[0].style.display = "none";
-		}
-		else{
-			document.getElementsByClassName("navbar")[0].style.display = "flex";
-		}
-	}
-}
-
-function resizehandler(){
-	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-	if (w <= 1083){
-		document.getElementsByClassName("navbar")[0].style.display = "none";
-	}
-	else{
-		document.getElementsByClassName("navbar")[0].style.display = "flex";
-	}
-
-
-}
-
-window.onresize = resizehandler
-
-
-
-</script>
-
-<style type='text/css'>
-html, body{
-	margin: 0;
-	padding 0;	
-}
-
-.oheader{
-	z-index: 100;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 40px;
-	border-bottom: black solid;
-}
-
-.navbar {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 40px;
-	width:100%;
-	margin: 0; 
-/* 	list-style-type: none; */
-	overflow: hidden;
-	background-color: #8f2837;
-	padding: 0; 
-}
-
-.navbar > div {
-	flex-grow: 1;
-	text-align: center;
-	padding: 0;
-}
-
-.nav-item{
-	border-right: black solid 1px;
-}
-
-.link {
-	flex-grow: 1;
-	border-color: black;
-	text-align: center;
-	font-size: 2.2em;
-
-    text-decoration: none;
-	color: #efc729; 
-}
-
-.link:hover {
-	overflow: hidden;
-	background-color: #111;
-}
-
-.link-selected {
-	border-right: solid 1px;
-	border-color: black;
-	text-align: center;
-	font-size: 2.2em;
-
-    text-decoration: none;
-	color: #efc729;
-	background-color: #111;
- }
-
- .link-selected:hover {
- 	opacity: .8; 
- }
-
- .menu-icon{
- 	float: right;
- 	display: none;
- 	width: 40px;
- 	height: 40px; 
- 	background: black center;
- }
-
- #Title {
- 	display: none
- }
-
-
-@media only screen and (max-width : 1083px){
-	.menu-icon{
-		display: inline-block;
-	}
-
-	.oheader{
-		background-color: #8f2837;
-	}
-
-	.navbar {
-		position: absolute;
-		z-index: 100;
-		float: right;
-		display: none;
-		padding: 15px;
-		background: black;
-		border: 5px solid #444;
-		right: 0px;
-		top: 40px;
-		width: 75%;
-		height: 100%;
-		border-radius: 4px 0 4px 4px; 
-	}
-
-	.link{
-		font-size: 1em;
-
-	}
-
-	.link-selected{
-		font-size: 1em;
-		border-right: solid 1px;
-		border-color: black;
-		text-align: center;
-		font-size: 1em;
-    	padding: 1px 20px;
-    	text-decoration: none;
-		color: #efc729; 
-	}
-
-	#nav-item{
-		text-align: center;
-		width: 100%;
-		padding: 10px 0;
-		margin: 0;
-	}
-	#Title{
-		font-size: 2em; 
-		float: left;
-		color: #efc729;
-		display: inline-block;
-		width: (100% - 40px);
-	}
-}
-
-
-</style>
-{% endblock %}
 
 {% block style %}
 {% endblock %}
@@ -212,21 +58,37 @@ html, body{
 <body>
 {% block nav-bar %}
 <header class="oheader">
-<nav onclick='handlerfornavbar()'>
-<b id='Title'>Discovery Senate</b>
-<a href="#" class='menu-icon'></a>
+<nav>
+<a href="{% url 'home' %}" id='Title'>Student Senate</a>
+<a onclick='handlerfornavbar()' href="#" class='menu-icon'></a>
 	<div class='navbar' id='navbar'>
+		{% load extras %}
 
 		<a class = 'link' href='{% url 'home' %}'><div class='nav-item'>Home</div></a>
+		
+		{% if request.user|has_group:"Senators" %}
+		<li class='nav-item' id='Senator-Main-List'>
+			<p style='margin:0px;' id='Senator-Link' class='link' aria-haspopup="true">Community</a>
+			<ul id='Community-Sub-List'>
+				<a class='link' href='{% url "community-home" %}'><li class='nav-item'>Community Surveys</li></a>
+				<a class='link' href='{% url "community-results" %}'><li class='nav-item'>Survey Results</li></a>
+			</ul>
+		</li>
 
-		<a class = 'link' href='{% url 'community-home' %}'><div class='nav-item'>Community</div></a>
-
+		{% else %}
+		<a class = 'link' href='{% url 'community-home' %}'><div class='nav-item'>Community</div></a>{% endif %}
+			
 		<a class = 'link' href='{% url 'projects-home' %}'><div class='nav-item'>Projects</div></a>
 
-		<a class = 'link' href='{% url 'senate-home' %}'><div class='nav-item'>Senate</div></a>
-
+		<li class='nav-item' id='Senator-Main-List'>
+			<div class='nav-item'><p id='Senator-Link' class='link' aria-haspopup="true">Senate</p></div>
+			<ul id='Senator-Sub-List'>
+				<a class='link' href='{% url "senate-home" %}'><li class='nav-item'>Senators</li></a>
+				<a class='link' href='{% url "senate-minutes-home" %}'><li class='nav-item'>Minutes</li></a>
+			</ul>
+		</li>
 		{% if request.user.is_authenticated %}
-		<a class = 'link' href="{% url 'logout' %}">Logout<div style=''class='nav-item'></div></a>
+		<a class = 'link' href="{% url 'logout' %}"><div style=''class='nav-item'>Logout</div></a>
 		{% else %}
 		<a class = 'link' href="{% url 'login' %}"><div style=''class='nav-item'>Login</div></a>
 		{% endif %}
